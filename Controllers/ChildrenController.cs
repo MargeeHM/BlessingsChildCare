@@ -57,9 +57,19 @@ namespace Blessings.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Save today's date.
+                var today = DateTime.Today;
+
+                // Calculate the age.
+                var age = today.Year - child.ChildBirthdate.Year;
+
+                // Go back to the year in which the person was born in case of a leap year
+                if (child.ChildBirthdate.Date > today.AddYears(-age)) age--;
+                child.Age = age;
                 _context.Add(child);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
             return View(child);
         }
