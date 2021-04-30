@@ -36,10 +36,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.MotherLastName)
             </th>
-            <th>
+            <!--<th>
                 @Html.DisplayNameFor(model => model.ContactPhone)
-            </th>
-            <th>
+            </th>-->
+           @* <th>
                 @Html.DisplayNameFor(model => model.Street)
             </th>
             <th>
@@ -50,7 +50,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Zipcode)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -81,7 +81,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MotherLastName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ContactPhone)
             </td>
             <td>
@@ -95,12 +95,13 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Zipcode)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ChildId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ChildId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ChildId">Delete</a>
-            </td>
+            </td>*@
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ChildId">Edit</a> |
+            <a asp-action="Create" asp-controller="Enrollment" asp-route-id="@item.ChildId">Enroll</a> |
+            <a asp-action="Details" asp-route-id="@item.ChildId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ChildId">Delete</a>
+        </td>
         </tr>
 }
     </tbody>

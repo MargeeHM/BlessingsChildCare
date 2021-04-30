@@ -31,6 +31,7 @@ namespace Blessings.Models
         [StringLength(50)]
         public string ChildLastName { get; set; }
         [Column("childBirthdate", TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime ChildBirthdate { get; set; }
         [Column("age")]
         public int Age { get; set; }
