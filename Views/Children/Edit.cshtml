@@ -4,9 +4,23 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.js"></script>
 
-<h4>Child</h4>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                xdialog.alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+<div class="reportHeader">
+    <h1>
+        Edit child @Model.ChildLastName @Model.ChildFirstName
+    </h1>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -85,8 +99,12 @@
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
+</div>*@
+<div>
+    <input type="button" class="button" value="Back to List"
+           onclick="location.href='@Url.Action("Index")'" />
 </div>
 
 @section Scripts {

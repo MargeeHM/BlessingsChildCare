@@ -1,0 +1,51 @@
+﻿@model Blessings.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Enrollment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Course" class="control-label"></label>
+                <input asp-for="Course" class="form-control" />
+                <span asp-validation-for="Course" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomNo" class="control-label"></label>
+                <input asp-for="RoomNo" class="form-control" />
+                <span asp-validation-for="RoomNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnrollmentDate" class="control-label"></label>
+                <input asp-for="EnrollmentDate" class="form-control" />
+                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChildId" class="control-label"></label>
+                <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+<div>
+    <input type="button" class="button" value="To Enrollments"
+           onclick="location.href='@Url.Action("Index", "Enrollments")'" />
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

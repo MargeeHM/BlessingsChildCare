@@ -19,8 +19,14 @@ namespace Blessings.Controllers
         }
 
         // GET: Children
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(/*string searchString*/)
         {
+            /*var dbContext = from c in _context.Child
+                            join e in _context.Enrollment on c.ChildId
+                            equals e.ChildId into Temp
+                            from lj in Temp.DefaultIfEmpty()
+                            select new */
+
             return View(await _context.Child.ToListAsync());
         }
 
@@ -38,6 +44,10 @@ namespace Blessings.Controllers
             {
                 return NotFound();
             }
+            child.Enrollment = _context.Enrollment.Where(m => m.ChildId == child.ChildId).ToList();
+            child.Emergency = _context.Emergency.Where(m => m.ChildId == child.ChildId).ToList();
+            child.Medical = _context.Medical.Where(m => m.ChildId == child.ChildId).ToList();
+            child.Payment = _context.Payment.Where(m => m.ChildId == child.ChildId).ToList();
 
             return View(child);
         }

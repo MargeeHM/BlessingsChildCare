@@ -23,6 +23,7 @@ namespace Blessings.Models
         [StringLength(10)]
         public string RoomNo { get; set; }
         [Column("enrollmentDate", TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime EnrollmentDate { get; set; }
         [Column("child_id")]
         public int ChildId { get; set; }
