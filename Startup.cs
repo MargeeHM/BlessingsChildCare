@@ -65,6 +65,7 @@ namespace Blessings
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+              
             });
         }
     }

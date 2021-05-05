@@ -48,7 +48,7 @@ namespace Blessings.Controllers
         public IActionResult Create(int ChildId)
         {
             var children = from c in _context.Child where c.ChildId == ChildId select c; 
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName");
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildLastName");
             return View();
         }
 
@@ -60,22 +60,22 @@ namespace Blessings.Controllers
         public async Task<IActionResult> Create([Bind("EnrollmentId,Course,RoomNo,EnrollmentDate,ChildId")] Enrollment enrollment)
         {
 
-            var children = from c in _context.Child where c.ChildId == enrollment.ChildId select c;
-            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildFirstName");
+           /* var children = from c in _context.Child where c.ChildId == enrollment.ChildId select c;
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");*/
 
-            if (enrollment.EnrollmentDate < DateTime.Today.AddDays(1))
+            if (enrollment.EnrollmentDate < DateTime.Today)
             {
-                ViewBag.Message = "Please enter future Date";
+                ViewBag.Message = "Please choose future Date";
                 return View(enrollment);
             }
             if (ModelState.IsValid)
             {
-                  
                     _context.Add(enrollment);
                     await _context.SaveChangesAsync();
                 
                 return RedirectToAction("Details","Children",new { id = enrollment.ChildId});
             }
+           
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", enrollment.ChildId);
             return View(enrollment);
         }
@@ -93,7 +93,7 @@ namespace Blessings.Controllers
             {
                 return NotFound();
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", enrollment.ChildId);
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildLastName");
             return View(enrollment);
         }
 
@@ -129,9 +129,9 @@ namespace Blessings.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Children", new { id = enrollment.ChildId });
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", enrollment.ChildId);
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildLastName", enrollment.ChildId);
             return View(enrollment);
         }
 
@@ -162,7 +162,7 @@ namespace Blessings.Controllers
             var enrollment = await _context.Enrollment.FindAsync(id);
             _context.Enrollment.Remove(enrollment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Children", new { id =enrollment.ChildId });
         }
 
         private bool EnrollmentExists(int id)

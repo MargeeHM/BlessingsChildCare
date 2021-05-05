@@ -4,9 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="reportHeader">
+    <h3>
+        Create enrollment 
+    </h3>
+</div>
 
-<h4>Enrollment</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,11 +42,11 @@
 </div>
 
 @*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 <div>
-    <input type="button" class="button" value="To Enrollments"
-           onclick="location.href='@Url.Action("Index", "Enrollments")'" />
+    <input type="button" class="button" value="Children List"
+           onclick="location.href='@Url.Action("Index", "Children")'" />
 </div>
 
 @section Scripts {
