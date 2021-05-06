@@ -115,8 +115,8 @@
     </div>
 
     <hr />
-   @* <a class="Create" href="@Url.Action("Create", "Enrollnents", new { ChildId = Model.ChildId })">Add enrollment Info</a>*@
-    <a class="Create" asp-action="Create" asp-route-id="@Model.ChildId" asp-controller="Enrollments">Add enrollment Info</a>
+    <a class="Create" href="@Url.Action("Create", "Enrollments", new { ChildId = Model.ChildId })">Add enrollment Info</a>
+    @*<a class="Create" asp-action="Create" asp-route-id="@Model.ChildId" asp-controller="Enrollments">Add enrollment Info</a>*@
     <table class="table">
         <thead>
             <tr>
@@ -154,7 +154,7 @@
                     </td>
                     <td>
                         <a class="Edit" asp-action="Edit" asp-route-id="@item.EnrollmentId" asp-controller="Enrollments">Edit</a> |
-                        <a class="Delete" asp-action="Delete" asp-route-id="@item.EnrollmentId" asp-controller="Enrollnents">Delete</a>
+                        <a class="Delete" asp-action="Delete" asp-route-id="@item.EnrollmentId" asp-controller="Enrollments">Delete</a>
                     </td>
                 </tr>
             }
@@ -162,66 +162,67 @@
     </table>
 </div>
 
-    <div style="margin-top: 40px;">
+<div style="margin-top: 40px;">
 
-        <div class="reportHeader">
-            <h5>
-                Emergency Contact Info
-            </h5>
-        </div>
-
-        <hr />
-        <a class="Create" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId })">Add Emergency Contact Info</a>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => emergencyModel.EmergencyContactFirstName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => emergencyModel.EmergencyContactLastName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => emergencyModel.EmergencyContactPhone)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => emergencyModel.Relationship)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => emergencyModel.Child)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Emergency)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmergencyContactFirstName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmergencyContactLastName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmergencyContactPhone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Relationship)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
-                        </td>
-                        <td>
-                            <a class="Edit" asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Edit</a> |
-                            <a class="Delete" asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <div class="reportHeader">
+        <h5>
+            Emergency Contact Info
+        </h5>
     </div>
+
+    <hr />
+    
+    <a class="Create" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId })">Add Emergency Contact Info</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => emergencyModel.EmergencyContactFirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => emergencyModel.EmergencyContactLastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => emergencyModel.EmergencyContactPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => emergencyModel.Relationship)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => emergencyModel.Child)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Emergency)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmergencyContactFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmergencyContactLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmergencyContactPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Relationship)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                    </td>
+                    <td>
+                        <a class="Edit" asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Edit</a> |
+                        <a class="Delete" asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
     <div style="margin-top: 40px;">
 
@@ -324,7 +325,7 @@
         </div>
 
         <hr />
-        <a class="Create" href="@Url.Action("Create", "Medicals", new { ChildId = Model.ChildId })">Add payment Info</a>
+        <a class="Create" href="@Url.Action("Create", "Payments", new { ChildId = Model.ChildId })">Add payment Info</a>
 
 
         <table class="table">

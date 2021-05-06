@@ -4,7 +4,11 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="reportHeader">
+    <h3>
+        Emergency Contact details
+    </h3>
+</div>
 
 <div>
     <h4>Emergency</h4>
@@ -44,5 +48,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.EmergencyId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <input type="button" class="button" value="Children List"
+           onclick="location.href='@Url.Action("Index", "Children")'" />
 </div>

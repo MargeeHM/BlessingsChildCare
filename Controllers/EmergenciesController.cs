@@ -45,9 +45,11 @@ namespace Blessings.Controllers
         }
 
         // GET: Emergencies/Create
-        public IActionResult Create()
+        public IActionResult Create(int ChildId)
         {
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName");
+           
+            var children = from c in _context.Child where c.ChildId == ChildId select c;
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
             return View();
         }
 
@@ -62,7 +64,7 @@ namespace Blessings.Controllers
             {
                 _context.Add(emergency);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Children", new { id = emergency.ChildId });
             }
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", emergency.ChildId);
             return View(emergency);
@@ -115,7 +117,7 @@ namespace Blessings.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Children", new { id = emergency.ChildId });
             }
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", emergency.ChildId);
             return View(emergency);
@@ -148,7 +150,7 @@ namespace Blessings.Controllers
             var emergency = await _context.Emergency.FindAsync(id);
             _context.Emergency.Remove(emergency);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Children", new { id = emergency.ChildId });
         }
 
         private bool EmergencyExists(int id)
