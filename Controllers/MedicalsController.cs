@@ -45,9 +45,10 @@ namespace Blessings.Controllers
         }
 
         // GET: Medicals/Create
-        public IActionResult Create()
+        public IActionResult Create(int ChildId)
         {
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName");
+            var children = from c in _context.Child where c.ChildId == ChildId select c;
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
             return View();
         }
 
@@ -62,7 +63,7 @@ namespace Blessings.Controllers
             {
                 _context.Add(medical);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Children", new { id = medical.ChildId });
             }
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", medical.ChildId);
             return View(medical);
@@ -115,7 +116,7 @@ namespace Blessings.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Children", new { id = medical.ChildId });
             }
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", medical.ChildId);
             return View(medical);
@@ -148,7 +149,7 @@ namespace Blessings.Controllers
             var medical = await _context.Medical.FindAsync(id);
             _context.Medical.Remove(medical);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Children", new { id = medical.ChildId });
         }
 
         private bool MedicalExists(int id)

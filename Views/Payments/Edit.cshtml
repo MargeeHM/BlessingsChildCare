@@ -4,9 +4,11 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Payment</h4>
+<div class="reportHeader">
+    <h3>
+        Edit Payment info
+    </h3>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -46,7 +48,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <input type="button" class="button" value="Children List"
+           onclick="location.href='@Url.Action("Index", "Children")'" />
 </div>
 
 @section Scripts {

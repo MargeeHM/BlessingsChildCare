@@ -19,15 +19,23 @@ namespace Blessings.Controllers
         }
 
         // GET: Children
-        public async Task<IActionResult> Index(/*string searchString*/)
+        public async Task<IActionResult> Index(string searchString)
         {
-            /*var dbContext = from c in _context.Child
-                            join e in _context.Enrollment on c.ChildId
-                            equals e.ChildId into Temp
-                            from lj in Temp.DefaultIfEmpty()
-                            select new */
+            var result = from c in _context.Child select c;
 
-            return View(await _context.Child.ToListAsync());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(s => s.ChildFirstName.Contains(searchString)
+                 || s.ChildLastName.Contains(searchString)
+                 || s.ChildBirthdate.ToString().Contains(searchString)
+                 || s.Age.ToString().Contains(searchString)
+                 || s.FatherFirstName.Contains(searchString)
+                 || s.FatherLastName.Contains(searchString)
+                 || s.MotherFirstName.Contains(searchString)
+                 || s.MotherLastName.Contains(searchString)
+                 || s.ContactPhone.Contains(searchString));
+            }
+            return View(await result.ToListAsync());
         }
 
         // GET: Children/Details/5

@@ -45,9 +45,12 @@ namespace Blessings.Controllers
         }
 
         // GET: Payments/Create
-        public IActionResult Create()
+        public IActionResult Create(int ChildId)
         {
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName");
+            var children = from c in _context.Child where c.ChildId == ChildId select c;
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
+            
+          
             return View();
         }
 
@@ -60,9 +63,30 @@ namespace Blessings.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*Enrollment enroll = new Enrollment();
+                if (enroll.Course == "PreK")
+                {
+                    payment.Amount = 1373;
+                }
+                else if (enroll.Course == "baby")
+                {
+                    payment.Amount = 1825;
+                }
+                else if (enroll.Course == "Preschool")
+                {
+                    payment.Amount = 1373;
+                }
+                else if (enroll.Course == "Toddler")
+                {
+                    payment.Amount = 1643;
+                }
+                else {
+                    payment.Amount = 0;
+                }
+*/
                 _context.Add(payment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Children", new { id = payment.ChildId });
             }
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
             return View(payment);
@@ -115,7 +139,7 @@ namespace Blessings.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Children", new { id = payment.ChildId });
             }
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
             return View(payment);
@@ -148,7 +172,7 @@ namespace Blessings.Controllers
             var payment = await _context.Payment.FindAsync(id);
             _context.Payment.Remove(payment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Children", new { id = payment.ChildId });
         }
 
         private bool PaymentExists(int id)
