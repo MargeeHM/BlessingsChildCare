@@ -7,12 +7,10 @@ using System.Collections.Generic;
 
 namespace Blessings.Models
 {
-    public partial class Enrollment
+    public partial class CourseFees
     {
-        public int EnrollmentId { get; set; }
-        public string Course { get; set; }
-        public string RoomNo { get; set; }
-        public DateTime EnrollmentDate { get; set; }
-        public int ChildId { get; set; }
+        public int CoursefeesId { get; set; }
+        public string CourseName { get; set; }
+        public double Fees { get; set; }
     }
 }

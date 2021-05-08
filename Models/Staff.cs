@@ -16,38 +16,47 @@ namespace Blessings.Models
         public int StaffId { get; set; }
         [Required]
         [Column("staffFirstName")]
+        [Display(Name = "FirstName")]
         [StringLength(50)]
         public string StaffFirstName { get; set; }
         [Required]
         [Column("staffLastName")]
+        [Display(Name = "LastName")]
         [StringLength(50)]
         public string StaffLastName { get; set; }
         [Required]
         [Column("room")]
+        [Display(Name = "Room")]
         [StringLength(50)]
         public string Room { get; set; }
         [Required]
         [Column("street")]
+        [Display(Name = "Street")]
         [StringLength(50)]
         public string Street { get; set; }
         [Required]
         [Column("city")]
+        [Display(Name = "City")]
         [StringLength(50)]
         public string City { get; set; }
         [Required]
         [Column("state")]
+        [Display(Name = "State")]
         [StringLength(2)]
         public string State { get; set; }
         [Required]
         [Column("zipcode")]
         [StringLength(10)]
+        [Display(Name = "Zipcode")]
         public string Zipcode { get; set; }
         [Required]
         [Column("email")]
+        [Display(Name = "Email")]
         [StringLength(50)]
         public string Email { get; set; }
         [Required]
         [Column("phone")]
+        [Display(Name = "Phone")]
         [StringLength(10)]
         public string Phone { get; set; }
     }

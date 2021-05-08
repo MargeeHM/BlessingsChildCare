@@ -17,13 +17,16 @@ namespace Blessings.Models
         [Required]
         [Column("emergencyContactFirstName")]
         [StringLength(50)]
+        [Display(Name = "FirstName")]
         public string EmergencyContactFirstName { get; set; }
         [Required]
         [Column("emergencyContactLastName")]
+        [Display(Name = "LastName")]
         [StringLength(50)]
         public string EmergencyContactLastName { get; set; }
         [Required]
         [Column("emergencyContactPhone")]
+        [Display(Name = "Phone")]
         [StringLength(10)]
         public string EmergencyContactPhone { get; set; }
         [StringLength(25)]
