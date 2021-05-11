@@ -102,8 +102,8 @@
     </dl>
 </div>
 <div style="margin-top: 20px; margin-bottom: 20px;">
-    <a class="Edit" asp-action="Edit" asp-route-id="@Model.ChildId">Edit Child info</a>
-    <a class="Delete" asp-action="Delete" asp-route-id="@Model.ChildId">Delete Child info</a>
+    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@Model.ChildId">Edit Child info</a>
+    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.ChildId">Delete Child info</a>
 </div>
 
 <div style="margin-top: 40px;">
@@ -115,7 +115,7 @@
     </div>
 
     <hr />
-    <a class="Create" href="@Url.Action("Create", "Enrollments", new { ChildId = Model.ChildId })">Add enrollment Info</a>
+    <a class="btn btn-outline-primary" href="@Url.Action("Create", "Enrollments", new { ChildId = Model.ChildId })">Add enrollment Info</a>
     @*<a class="Create" asp-action="Create" asp-route-id="@Model.ChildId" asp-controller="Enrollments">Add enrollment Info</a>*@
     <table class="table">
         <thead>
@@ -153,8 +153,8 @@
                         @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
                     </td>
                     <td>
-                        <a class="Edit" asp-action="Edit" asp-route-id="@item.EnrollmentId" asp-controller="Enrollments">Edit</a> |
-                        <a class="Delete" asp-action="Delete" asp-route-id="@item.EnrollmentId" asp-controller="Enrollments">Delete</a>
+                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.EnrollmentId" asp-controller="Enrollments">Edit</a> |
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.EnrollmentId" asp-controller="Enrollments">Delete</a>
                     </td>
                 </tr>
             }
@@ -172,7 +172,7 @@
 
     <hr />
     
-    <a class="Create" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId })">Add Emergency Contact Info</a>
+    <a  class="btn btn-outline-primary" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId })">Add Emergency Contact Info</a>
 
     <table class="table">
         <thead>
@@ -215,8 +215,8 @@
                         @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
                     </td>
                     <td>
-                        <a class="Edit" asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Edit</a> |
-                        <a class="Delete" asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Delete</a>
+                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Edit</a> |
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies">Delete</a>
                     </td>
                 </tr>
             }
@@ -227,13 +227,13 @@
     <div style="margin-top: 40px;">
 
         <div class="reportHeader">
-            <h5>
+            <h5 class="text-success">
                 Medical Info
             </h5>
         </div>
 
         <hr />
-        <a class="Create" href="@Url.Action("Create", "Medicals", new { ChildId = Model.ChildId })">Add Medical Info</a>
+        <a class="btn btn-outline-primary" href="@Url.Action("Create", "Medicals", new { ChildId = Model.ChildId })">Add Medical Info</a>
 
         <table class="table">
             <thead>
@@ -306,8 +306,8 @@
                             @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
                         </td>
                         <td>
-                            <a class="Edit" asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals">Edit</a> |
-                            <a class="Delete" asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals">Delete</a>
+                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals">Edit</a> |
+                            <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals">Delete</a>
                         </td>
                     </tr>
                 }
@@ -316,64 +316,4 @@
 
     </div>
 
-    <div style="margin-top: 40px;">
-
-        <div class="reportHeader">
-            <h5>
-                Payment Info
-            </h5>
-        </div>
-
-        <hr />
-        <a class="Create" href="@Url.Action("Create", "Payments", new { ChildId = Model.ChildId })">Add payment Info</a>
-
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => paymentModel.PayerName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => paymentModel.PaymentType)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => paymentModel.Amount)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => paymentModel.PaymentDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => paymentModel.Child)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Payment)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PayerName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PaymentType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Amount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PaymentDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
-                        </td>
-                        <td>
-                            <a class="Edit" asp-action="Edit" asp-route-id="@item.PaymentId" asp-controller="Payments">Edit</a> |
-                            <a class="Delete" asp-action="Delete" asp-route-id="@item.PaymentId" asp-controller="Payments">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    

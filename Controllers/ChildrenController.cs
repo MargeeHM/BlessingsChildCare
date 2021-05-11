@@ -75,6 +75,21 @@ namespace Blessings.Controllers
         {
             if (ModelState.IsValid)
             {
+                var result = from c in _context.Child select c;
+
+                result = result.Where(s => s.ChildFirstName.Contains(child.ChildFirstName)
+                 && s.ChildLastName.Contains(child.ChildLastName)
+                 && s.ChildBirthdate.Equals(child.ChildBirthdate)
+                 && s.FatherFirstName.Contains(child.FatherFirstName)
+                 && s.FatherLastName.Contains(child.FatherLastName)
+                 && s.MotherFirstName.Contains(child.MotherFirstName)
+                 && s.MotherLastName.Contains(child.MotherLastName)
+                 && s.ContactPhone.Contains(child.ContactPhone));
+
+                if (result != null) {
+                    ViewBag.Message = "Child is already enrolled.";
+                    return View(child);
+                }
                 // Save today's date.
                 var today = DateTime.Today;
 
@@ -167,6 +182,7 @@ namespace Blessings.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var child = await _context.Child.FindAsync(id);
+
             _context.Child.Remove(child);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
