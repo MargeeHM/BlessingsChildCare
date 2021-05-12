@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Blessings.ViewModel;
+using Blessings.Models;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -160,5 +161,7 @@ namespace Blessings.Models
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<Blessings.ViewModel.EnrollmentViewModel> EnrollmentViewModel { get; set; }
+
+        public DbSet<Blessings.Models.Room> Room { get; set; }
     }
 }
