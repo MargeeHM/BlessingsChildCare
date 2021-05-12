@@ -31,5 +31,15 @@ namespace Blessings.Models
         [ForeignKey(nameof(ChildId))]
         [InverseProperty("Enrollment")]
         public virtual Child Child { get; set; }
+
+       
+        public int? CourseFeeId { get; set; }
+
+        [ForeignKey(nameof(CourseFeeId))]
+        [InverseProperty("Enrollment")]
+        public virtual CourseFees CourseFees { get; set; }
+
+        [InverseProperty("Enrollment")]
+        public virtual ICollection<Payment> Payment { get; set; }
     }
 }
