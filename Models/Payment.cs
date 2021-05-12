@@ -32,5 +32,12 @@ namespace Blessings.Models
         [ForeignKey(nameof(ChildId))]
         [InverseProperty("Payment")]
         public virtual Child Child { get; set; }
+        
+        [Column("EnrollmentId")]
+        public int? EnrollmentId { get; set; }
+
+        [ForeignKey(nameof(EnrollmentId))]
+        [InverseProperty("Payment")]
+        public virtual Enrollment Enrollment { get; set; }
     }
 }
