@@ -163,5 +163,6 @@ namespace Blessings.Models
         public DbSet<Blessings.ViewModel.EnrollmentViewModel> EnrollmentViewModel { get; set; }
 
         public DbSet<Blessings.Models.Room> Room { get; set; }
+        public DbSet<Blessings.Models.CourseFees> CourseFees { get; set; }
     }
 }

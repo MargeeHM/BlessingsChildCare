@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
+using Blessings.ViewModel;
 
 namespace Blessings.Controllers
 {
@@ -47,10 +48,12 @@ namespace Blessings.Controllers
         // GET: Payments/Create
         public IActionResult Create(int ChildId)
         {
-            var children = from c in _context.Child where c.ChildId == ChildId select c;
+            var children = from e in _context.Child where e.ChildId == ChildId select e;
             ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
-            
-          
+
+            /*    var coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
+                double amount = Convert.ToDouble(coursefee);
+                ViewData["Amount"] = new SelectList(amount, "ChildId", "ChildLastName");*/
             return View();
         }
 
@@ -61,52 +64,38 @@ namespace Blessings.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaymentId,PayerName,PaymentType,Amount,PaymentDate,ChildId")] Payment payment)
         {
-            if (ModelState.IsValid)
-            {
-                /*Enrollment enroll = new Enrollment();
-                if (enroll.Course == "PreK")
-                {
-                    payment.Amount = 1373;
-                }
-                else if (enroll.Course == "baby")
-                {
-                    payment.Amount = 1825;
-                }
-                else if (enroll.Course == "Preschool")
-                {
-                    payment.Amount = 1373;
-                }
-                else if (enroll.Course == "Toddler")
-                {
-                    payment.Amount = 1643;
-                }
-                else {
-                    payment.Amount = 0;
-                }
-*/
-                _context.Add(payment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Children", new { id = payment.ChildId });
-            }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
-            return View(payment);
+        if (ModelState.IsValid)
+        {
+           var children = from c in _context.EnrollmentViewModel where c.ChildId == payment.ChildId select c;
+           ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName", payment.ChildId);
+           
+           var coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
+           payment.Amount = Convert.ToInt64(coursefee);
+           _context.Add(payment);
+           await _context.SaveChangesAsync();
+
+           ViewBag.Message = payment.Amount + "Paid.";
+           return RedirectToAction("Details", "Children", new { id = payment.ChildId });
+        }
+        ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
+        return View(payment);
         }
 
         // GET: Payments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        if (id == null)
+        {
+           return NotFound();
+        }
 
-            var payment = await _context.Payment.FindAsync(id);
-            if (payment == null)
-            {
-                return NotFound();
-            }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
-            return View(payment);
+        var payment = await _context.Payment.FindAsync(id);
+        if (payment == null)
+        {
+           return NotFound();
+        }
+        ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
+        return View(payment);
         }
 
         // POST: Payments/Edit/5
@@ -116,52 +105,52 @@ namespace Blessings.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PaymentId,PayerName,PaymentType,Amount,PaymentDate,ChildId")] Payment payment)
         {
-            if (id != payment.PaymentId)
-            {
-                return NotFound();
-            }
+        if (id != payment.PaymentId)
+        {
+           return NotFound();
+        }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(payment);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PaymentExists(payment.PaymentId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Details", "Children", new { id = payment.ChildId });
-            }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
-            return View(payment);
+        if (ModelState.IsValid)
+        {
+           try
+           {
+               _context.Update(payment);
+               await _context.SaveChangesAsync();
+           }
+           catch (DbUpdateConcurrencyException)
+           {
+               if (!PaymentExists(payment.PaymentId))
+               {
+                   return NotFound();
+               }
+               else
+               {
+                   throw;
+               }
+           }
+           return RedirectToAction("Details", "Children", new { id = payment.ChildId });
+        }
+        ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
+        return View(payment);
         }
 
         // GET: Payments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        if (id == null)
+        {
+           return NotFound();
+        }
 
-            var payment = await _context.Payment
-                .Include(p => p.Child)
-                .FirstOrDefaultAsync(m => m.PaymentId == id);
-            if (payment == null)
-            {
-                return NotFound();
-            }
+        var payment = await _context.Payment
+           .Include(p => p.Child)
+           .FirstOrDefaultAsync(m => m.PaymentId == id);
+        if (payment == null)
+        {
+           return NotFound();
+        }
 
-            return View(payment);
+        return View(payment);
         }
 
         // POST: Payments/Delete/5
@@ -169,15 +158,15 @@ namespace Blessings.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var payment = await _context.Payment.FindAsync(id);
-            _context.Payment.Remove(payment);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Details", "Children", new { id = payment.ChildId });
+        var payment = await _context.Payment.FindAsync(id);
+        _context.Payment.Remove(payment);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Details", "Children", new { id = payment.ChildId });
         }
 
         private bool PaymentExists(int id)
         {
-            return _context.Payment.Any(e => e.PaymentId == id);
+        return _context.Payment.Any(e => e.PaymentId == id);
         }
-    }
-}
+        }
+        }

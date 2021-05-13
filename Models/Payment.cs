@@ -25,6 +25,7 @@ namespace Blessings.Models
         [Column("amount")]
         public double Amount { get; set; }
         [Column("paymentDate", TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime PaymentDate { get; set; }
         [Column("child_id")]
         public int ChildId { get; set; }

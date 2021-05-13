@@ -17,7 +17,10 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Course" class="control-label"></label>
-                <input asp-for="Course" class="form-control" />
+                <select asp-for="Course" class="form-control" asp-items="ViewBag.Course">
+                    <option value="">Please choose your course</option>
+                </select>
+              @*  <input asp-for="Course" class="form-control" />*@
                 <span asp-validation-for="Course" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,6 +37,12 @@
                 <label asp-for="ChildId" class="control-label"></label>
                 <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
             </div>
+        @*    <div class="form-group">
+                <label asp-for="CourseFeeId" class="control-label"></label>
+                <select asp-for="CourseFeeId" class="form-control" asp-items="ViewBag.Course">
+                    <option value="">Please choose your course</option>
+                </select>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

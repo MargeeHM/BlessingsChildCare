@@ -19,7 +19,14 @@ namespace Blessings.Controllers
             _context = context;
         }
 
-        // GET: EnrollmentViewModels
+       /* // GET: EnrollmentViewModels
+        public async Task<IActionResult> Index()
+        {
+            var blessingsdbContext = _context.EnrollmentViewModel.Include(e => e.EnrollmentId);
+            return View(await blessingsdbContext.ToListAsync());
+        }
+*/
+        // GET: EnrollmentViewModels by searchString
         public async Task<IActionResult> Index(string searchString)
         {
             var result = from c in _context.Child
