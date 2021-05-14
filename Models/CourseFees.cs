@@ -18,7 +18,7 @@ namespace Blessings.Models
         public string Course { get; set; }
 
         [Required]
-        public double Fee { get; set; }
+        public float Fee { get; set; }
 
         [InverseProperty("CourseFees")]
         public virtual ICollection<Enrollment> Enrollment { get; set; }

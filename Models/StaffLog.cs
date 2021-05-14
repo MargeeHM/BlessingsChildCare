@@ -7,22 +7,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blessings.Models
 {
-    public class ChildLog
+    public class StaffLog
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ChildlogId { get; set; }
+        public int StafflogId { get; set; }
         [DataType(DataType.Date)]
         public DateTime Day { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan CheckIn { get; set; }
+        public TimeSpan StaffCheckIn { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan CheckOut { get; set; }
-
-        public int ChildId { get; set; }
-
-        [ForeignKey(nameof(ChildId))]
-        [InverseProperty("ChildLog")]
-        public virtual Child Child { get; set; }
+        public TimeSpan StaffCheckOut { get; set; }
+       
+        public int StaffId { get; set; }
+        [ForeignKey(nameof(StaffId))]
+        [InverseProperty("StaffLog")]
+        public virtual Staff Staff { get; set; }
     }
 }

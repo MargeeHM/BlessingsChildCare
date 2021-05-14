@@ -14,6 +14,10 @@
     <Compile Remove="Migrations\20210512010456_addcourseFeeAndFk.Designer.cs" />
     <Compile Remove="Migrations\20210512011201_addcourseFeeAndFk.cs" />
     <Compile Remove="Migrations\20210512011201_addcourseFeeAndFk.Designer.cs" />
+    <Compile Remove="Migrations\20210513053329_addStaffChildLogs.cs" />
+    <Compile Remove="Migrations\20210513053329_addStaffChildLogs.Designer.cs" />
+    <Compile Remove="Migrations\20210513053928_addStaffChildLogs.cs" />
+    <Compile Remove="Migrations\20210513053928_addStaffChildLogs.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +31,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Image\" />
   </ItemGroup>
 
 </Project>

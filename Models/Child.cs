@@ -78,5 +78,11 @@ namespace Blessings.Models
         public virtual ICollection<Medical> Medical { get; set; }
         [InverseProperty("Child")]
         public virtual ICollection<Payment> Payment { get; set; }
+
+        [InverseProperty("Child")]
+        public virtual ICollection<ChildLog> ChildLog { get; set; }
+
+        [InverseProperty("Child")]
+        public virtual ICollection<ChildActivity> ChildActivity { get; set; }
     }
 }

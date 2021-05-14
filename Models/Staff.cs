@@ -50,5 +50,7 @@ namespace Blessings.Models
         [Column("phone")]
         [StringLength(10)]
         public string Phone { get; set; }
+        [InverseProperty("Staff")]
+        public virtual ICollection<StaffLog> StaffLog { get; set; }
     }
 }

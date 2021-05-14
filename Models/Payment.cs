@@ -23,7 +23,7 @@ namespace Blessings.Models
         [StringLength(50)]
         public string PaymentType { get; set; }
         [Column("amount")]
-        public double Amount { get; set; }
+        public float Amount { get; set; }
         [Column("paymentDate", TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime PaymentDate { get; set; }

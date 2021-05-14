@@ -69,8 +69,8 @@ namespace Blessings.Controllers
            var children = from c in _context.EnrollmentViewModel where c.ChildId == payment.ChildId select c;
            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName", payment.ChildId);
            
-           var coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
-           payment.Amount = Convert.ToInt64(coursefee);
+           IQueryable coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
+            payment.Amount = Convert.ToInt64(coursefee);
            _context.Add(payment);
            await _context.SaveChangesAsync();
 

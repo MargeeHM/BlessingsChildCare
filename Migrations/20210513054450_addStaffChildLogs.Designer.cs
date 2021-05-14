@@ -4,14 +4,16 @@ using Blessings.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blessings.Migrations
 {
     [DbContext(typeof(BlessingsdbContext))]
-    partial class BlessingsdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210513054450_addStaffChildLogs")]
+    partial class addStaffChildLogs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,35 +114,6 @@ namespace Blessings.Migrations
                     b.HasKey("ChildId");
 
                     b.ToTable("Child");
-                });
-
-            modelBuilder.Entity("Blessings.Models.ChildActivity", b =>
-                {
-                    b.Property<int>("ChildActivityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ActivityName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<DateTime>("Activitytime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ChildId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("ChildActivityId");
-
-                    b.HasIndex("ChildId");
-
-                    b.ToTable("ChildActivity");
                 });
 
             modelBuilder.Entity("Blessings.Models.ChildLog", b =>
@@ -764,15 +737,6 @@ namespace Blessings.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Blessings.Models.ChildActivity", b =>
-                {
-                    b.HasOne("Blessings.Models.Child", "Child")
-                        .WithMany("ChildActivity")
-                        .HasForeignKey("ChildId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Blessings.Models.ChildLog", b =>
