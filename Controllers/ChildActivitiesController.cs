@@ -103,7 +103,8 @@ namespace Blessings.Controllers
             {
                 return NotFound();
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", childActivity.ChildId);
+            var children = from c in _context.Child where c.ChildId == childActivity.ChildId select c;
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildFirstName", childActivity.ChildId);
             return View(childActivity);
         }
 
@@ -139,7 +140,8 @@ namespace Blessings.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", childActivity.ChildId);
+            var children = from c in _context.Child where c.ChildId == childActivity.ChildId select c;
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildFirstName", childActivity.ChildId);
             return View(childActivity);
         }
 

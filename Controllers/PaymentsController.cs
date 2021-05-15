@@ -68,13 +68,20 @@ namespace Blessings.Controllers
         {
            var children = from c in _context.EnrollmentViewModel where c.ChildId == payment.ChildId select c;
            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName", payment.ChildId);
-           
-           IQueryable coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
-            payment.Amount = Convert.ToInt64(coursefee);
-           _context.Add(payment);
+
+                var coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
+
+                /* payment.Amount = _context.CourseFees.AsQueryable().Join(_context.Enrollment, cf => cf.CourseFeeId, enroll => enroll.EnrollmentId,
+                                                                                     (cf,enroll) => new { cf,enroll}).Join() */
+
+                /*                var coursefee = _context.CourseFees.AsQueryable().Join(_context.Enrollment, cf => cf.Course, enroll => enroll.Course,
+                                                                                                        (cf, enroll) => new { cf, enroll }).Select(x => new { amt = x.cf.Fee });*/
+                payment.Amount = Convert.ToInt32(coursefee);
+             ViewBag.Message = payment.Amount + "Paid.";
+            _context.Add(payment);
            await _context.SaveChangesAsync();
 
-           ViewBag.Message = payment.Amount + "Paid.";
+           
            return RedirectToAction("Details", "Children", new { id = payment.ChildId });
         }
         ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
