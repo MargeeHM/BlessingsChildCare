@@ -49,6 +49,8 @@ namespace Blessings.Controllers
         {
             var children = from c in _context.Child where c.ChildId == ChildId select c; 
             ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
+            ViewData["Course"] = new SelectList(_context.CourseFees, "Course", "Course");
+           
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace Blessings.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EnrollmentId,Course,RoomNo,EnrollmentDate,ChildId")] Enrollment enrollment)
+        public async Task<IActionResult> Create([Bind("EnrollmentId,Course,RoomNo,EnrollmentDate,ChildId,CourseFeeId")] Enrollment enrollment)
         {
 
            /* var children = from c in _context.Child where c.ChildId == enrollment.ChildId select c;
@@ -75,7 +77,8 @@ namespace Blessings.Controllers
                 
                 return RedirectToAction("Details","Children",new { id = enrollment.ChildId});
             }
-           
+            ViewData["Course"] = new SelectList(_context.CourseFees, "CourseFeeId", "Course", enrollment.CourseFeeId );
+            var children = from c in _context.Child where c.ChildId == enrollment.ChildId select c;
             ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", enrollment.ChildId);
             return View(enrollment);
         }
