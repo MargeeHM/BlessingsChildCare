@@ -42,16 +42,18 @@ namespace Blessings.ViewModel
         [Display(Name = "Payment Type")]
         [StringLength(50)]
         public string PaymentType { get; set; }
-        [Required]
-        [Display(Name = "Status")]
-        [StringLength(25)]
-        public string Status { get; set; }
+
         [Display(Name = "Payment Amount")]
         public float Amount { get; set; }
         [Display(Name = "Payment Date")]
         [DataType(DataType.Date)]
         public DateTime PaymentDate { get; set; }
+        [Required]
+        [Display(Name = "Status")]
+        [StringLength(25)]
+        public string Status { get; set; }
 
         public int? EnrollmentId { get; set; }
+        public int? ChildId { get; set; }
     }
 }

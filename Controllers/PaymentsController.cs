@@ -62,7 +62,7 @@ namespace Blessings.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PaymentId,PayerName,PaymentType,Amount,PaymentDate,ChildId")] Payment payment)
+        public async Task<IActionResult> Create([Bind("PaymentId,PayerName,PaymentType,Amount,PaymentDate,Status,ChildId")] Payment payment)
         {
         if (ModelState.IsValid)
         {
