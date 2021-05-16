@@ -83,10 +83,10 @@ namespace Blessings.Controllers
                  && s.FatherFirstName.Contains(child.FatherFirstName)
                  && s.FatherLastName.Contains(child.FatherLastName)
                  && s.MotherFirstName.Contains(child.MotherFirstName)
-                 && s.MotherLastName.Contains(child.MotherLastName)
-                 && s.ContactPhone.Contains(child.ContactPhone));
+                 && s.MotherLastName.Contains(child.MotherLastName));
 
-                if (result != null) {
+                if (result.Any())
+                {
                     ViewBag.Message = "Child is already enrolled.";
                     return View(child);
                 }
@@ -182,7 +182,7 @@ namespace Blessings.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var child = await _context.Child.FindAsync(id);
-
+            
             _context.Child.Remove(child);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
