@@ -66,25 +66,20 @@ namespace Blessings.Controllers
         {
         if (ModelState.IsValid)
         {
-           var children = from c in _context.EnrollmentViewModel where c.ChildId == payment.ChildId select c;
-           ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName", payment.ChildId);
+                var coursefee = from c in _context.Child
+                                join e in _context.Enrollment on payment.ChildId equals e.ChildId 
+                                join cf in _context.CourseFees on e.Course equals cf.Course
+                                select cf.Fee;
 
-                var coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
-
-                /* payment.Amount = _context.CourseFees.AsQueryable().Join(_context.Enrollment, cf => cf.CourseFeeId, enroll => enroll.EnrollmentId,
-                                                                                     (cf,enroll) => new { cf,enroll}).Join() */
-
-                /*                var coursefee = _context.CourseFees.AsQueryable().Join(_context.Enrollment, cf => cf.Course, enroll => enroll.Course,
-                                                                                                        (cf, enroll) => new { cf, enroll }).Select(x => new { amt = x.cf.Fee });*/
-                payment.Amount = Convert.ToInt32(coursefee);
-             ViewBag.Message = payment.Amount + "Paid.";
+           payment.Amount = Convert.ToInt32(coursefee.First());
             _context.Add(payment);
            await _context.SaveChangesAsync();
 
            
            return RedirectToAction("Details", "Children", new { id = payment.ChildId });
         }
-        ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
+            var children = from c in _context.EnrollmentViewModel where c.ChildId == payment.ChildId select c;
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", payment.ChildId);
         return View(payment);
         }
 

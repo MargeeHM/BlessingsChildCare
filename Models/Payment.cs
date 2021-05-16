@@ -27,6 +27,10 @@ namespace Blessings.Models
         [Column("paymentDate", TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime PaymentDate { get; set; }
+        [Required]
+        [Display(Name = "Status")]
+        [StringLength(25)]
+        public string Status { get; set; }
         [Column("child_id")]
         public int ChildId { get; set; }
 

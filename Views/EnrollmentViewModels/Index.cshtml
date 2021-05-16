@@ -66,11 +66,12 @@
                 </td>*@
             <td>
                 @*<a class="Create" href="@Url.Action("Create", "Enrollments", new { ChildId = item. })">Add enrollment Info</a>*@
-                <!--<a asp-action="Edit" asp-route-id="@item.EnrollmentListId">Edit</a> |-->
-             @*   <a class="btn btn-outline-primary" asp-action="Create" asp-route-id="@item.EnrollmentListId" asp-controller="Payments">Pay</a>*@
+                <a class="btn btn-outline-primary" asp-action="Edit" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Edit</a>
+                @*  <a class="btn btn-outline-primary" href="@Url.Action("Edit", "Enrollments", new {ChildId = item.ChildId})">Edit</a> |*@
                 <a class="btn btn-outline-primary" href="@Url.Action("Create", "Payments", new {ChildId = item.ChildId})">Pay</a>
+                <a class="btn btn-outline-primary" asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Delete</a>
                 @*<a class="Details" asp-action="Details" asp-route-id="@item.EnrollmentListId">Details</a> |*@
-                <!--<a asp-action="Delete" asp-route-id="@item.EnrollmentListId">Delete</a>-->
+                <a class="btn btn-outline-primary" href="@Url.Action("Delete", "Enrollments", new {ChildId = item.ChildId})">Delete</a>
             </td>
             </tr>
         }
