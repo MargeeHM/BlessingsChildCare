@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Blessings.ViewModel.PaymentVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+          @*  <th>
+                @Html.DisplayNameFor(model => model.PaymentId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ChildFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChildBirthdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.EnrollmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChildId)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.PaymentId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildBirthdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+       @*     <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildId)
+            </td>*@
+            <td>
+              <a asp-action="Delete" asp-route-id="@item.PaymentListId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

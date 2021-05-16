@@ -47,7 +47,8 @@ namespace Blessings.Controllers
         // GET: StaffLogs/Create
         public IActionResult Create()
         {
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "City");
+           
+            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "StaffFirstName");
             return View();
         }
 
@@ -64,7 +65,9 @@ namespace Blessings.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "City", staffLog.StaffId);
+            var staff = from s in _context.Staff where s.StaffId == staffLog.StaffId select s;
+            ViewData["StaffId"] = new SelectList(staff, "StaffId", "StaffFirstName", staffLog.StaffId);
+         
             return View(staffLog);
         }
 

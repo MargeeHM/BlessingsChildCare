@@ -168,5 +168,7 @@ namespace Blessings.Models
         public DbSet<Blessings.Models.StaffLog> StaffLog { get; set; }
 
         public DbSet<Blessings.Models.ChildActivity> ChildActivity { get; set; }
+
+        public DbSet<Blessings.ViewModel.PaymentVM> PaymentVM { get; set; }
     }
 }

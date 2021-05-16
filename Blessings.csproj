@@ -18,15 +18,25 @@
     <Compile Remove="Migrations\20210513053329_addStaffChildLogs.Designer.cs" />
     <Compile Remove="Migrations\20210513053928_addStaffChildLogs.cs" />
     <Compile Remove="Migrations\20210513053928_addStaffChildLogs.Designer.cs" />
+    <Compile Remove="Migrations\20210515050541_createPaymentListVM.cs" />
+    <Compile Remove="Migrations\20210515050541_createPaymentListVM.Designer.cs" />
+    <Compile Remove="Migrations\20210515235951_addpaymaneVm.cs" />
+    <Compile Remove="Migrations\20210515235951_addpaymaneVm.Designer.cs" />
+    <Compile Remove="Migrations\20210516000221_addpaymaneVm.cs" />
+    <Compile Remove="Migrations\20210516000221_addpaymaneVm.Designer.cs" />
+    <Compile Remove="Migrations\20210516000256_addpaymaneVm.cs" />
+    <Compile Remove="Migrations\20210516000256_addpaymaneVm.Designer.cs" />
+    <Compile Remove="Migrations\20210516000759_addpaymaneVmAgain.cs" />
+    <Compile Remove="Migrations\20210516000759_addpaymaneVmAgain.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
