@@ -12,8 +12,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <div class="form-group">
+                        <a value="Create" href="@Url.Action("Create", "Children")" class="btn btn-success"> Create Child </a>
+                    </div>
+                    <form asp-controller="Children" asp-action="Index" method="get">
+                        <p>
+                            Search: 
+                            <input type="text" name="SearchString">
+                            
+                        </p>
+                    </form>
+
                     <div class="card-body">
-                        <h4 class="card-title">Customer List</h4>
+                        <h4 class="card-title">Children List</h4>
                         <div class="table-responsive m-t-40">
                             <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
@@ -47,40 +58,40 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ChildFirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ChildLastName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ChildBirthdate)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Age)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.FatherFirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.FatherLastName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.MotherFirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.MotherLastName)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ChildId"  class="btn btn-icon btn-warning btn-xs m-b-5">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </a>
-                                            <a href="@Url.Action("Index", "Enrollments", new {ChildId = item.ChildId})"  class="btn btn-icon btn-success btn-xs m-b-5">
-                                                <i class="fa fa-edit"></i> Enroll
-                                            </a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ChildFirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ChildLastName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ChildBirthdate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Age)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FatherFirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FatherLastName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MotherFirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MotherLastName)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ChildId" class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </a>
+                                                <a href="@Url.Action("Index", "Enrollments", new {ChildId = item.ChildId})" class="btn btn-icon btn-success btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i> Enroll
+                                                </a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
