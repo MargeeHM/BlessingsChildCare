@@ -1,8 +1,11 @@
 ﻿@model Blessings.Models.Child
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "AddChild";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
+
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.js"></script>
@@ -16,7 +19,105 @@
     </script>
 }
 
-<div class="reportHeader">
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>New Child</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-elements">
+                            <form asp-controller="Children" asp-action="Create" method="post">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label asp-for="ChildFirstName"></label>
+                                            <input type="text" asp-for="ChildFirstName" class="form-control" />
+                                            <span asp-validation-for="ChildFirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ChildLastName" class="control-label"></label>
+                                            <input type="text" asp-for="ChildLastName" class="form-control" />
+                                            <span asp-validation-for="ChildLastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ChildBirthdate" class="control-label"></label>
+                                            <input asp-for="ChildBirthdate" class="form-control" />
+                                            <span asp-validation-for="ChildBirthdate" class="text-danger"></span>
+                                        </div>-->
+                                        <div class="form-group">
+                                            <label asp-for="Age" class="control-label"></label>
+                                            <input asp-for="Age" class="form-control" />
+                                            <span asp-validation-for="Age" class="text-danger"></span>
+                                        </div>
+                                                                        <div class="form-group">
+                                            <label asp-for="FatherFirstName" class="control-label"></label>
+                                            <input asp-for="FatherFirstName" class="form-control" />
+                                            <span asp-validation-for="FatherFirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="FatherLastName" class="control-label"></label>
+                                            <input asp-for="FatherLastName" class="form-control" />
+                                            <span asp-validation-for="FatherLastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="MotherFirstName" class="control-label"></label>
+                                            <input asp-for="MotherFirstName" class="form-control" />
+                                            <span asp-validation-for="MotherFirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="MotherLastName" class="control-label"></label>
+                                            <input asp-for="MotherLastName" class="form-control" />
+                                            <span asp-validation-for="MotherLastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ContactPhone" class="control-label"></label>
+                                            <input asp-for="ContactPhone" class="form-control" />
+                                            <span asp-validation-for="ContactPhone" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Street" class="control-label"></label>
+                                            <input asp-for="Street" class="form-control" />
+                                            <span asp-validation-for="Street" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="City" class="control-label"></label>
+                                            <input asp-for="City" class="form-control" />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="State" class="control-label"></label>
+                                            <input asp-for="State" class="form-control" />
+                                            <span asp-validation-for="State" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Zipcode" class="control-label"></label>
+                                            <input asp-for="Zipcode" class="form-control" />
+                                            <span asp-validation-for="Zipcode" class="text-danger"></span>
+                                        </div>
+                                       <div class="form-group">
+                                            <button type="submit" value="Create"class="btn btn-success"> Save Changes </button>
+                                        </div>
+
+                                    </div>
+                                 </div>
+                            </form>
+                         </div>
+                    </div>
+                 </div>
+             </div>
+        </div>
+      @*    End PAge Content *@
+    </div>
+</div>
+
+
+
+<!--<!--<!--<div class="reportHeader">
     <h1>
         ADD CHILD
     </h1>
@@ -42,11 +143,11 @@
                 <input asp-for="ChildBirthdate" class="form-control" />
                 <span asp-validation-for="ChildBirthdate" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
+            <div class="form-group">
                     <label asp-for="Age" class="control-label"></label>
                     <input asp-for="Age" class="form-control" />
                     <span asp-validation-for="Age" class="text-danger"></span>
-                </div>*@
+                </div>
             <div class="form-group">
                 <label asp-for="FatherFirstName" class="control-label"></label>
                 <input asp-for="FatherFirstName" class="form-control" />
@@ -95,15 +196,13 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+           </form>
     </div>
 </div>
 
 <div>
     <input type="button" class="button" value="Back to List"
            onclick="location.href='@Url.Action("Index")'" />
-</div>
+</div>-->
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<!---->

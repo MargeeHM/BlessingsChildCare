@@ -31,7 +31,7 @@ namespace Blessings
             services.AddDbContext<BlessingsdbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("BlessingsDb")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BlessingsdbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();

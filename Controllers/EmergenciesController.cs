@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
+  
     public class EmergenciesController : Controller
     {
         private readonly BlessingsdbContext _context;

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
 using Blessings.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
+   
     public class EnrollmentViewModelsController : Controller
     {
         private readonly BlessingsdbContext _context;
