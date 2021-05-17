@@ -28,6 +28,8 @@
     <Compile Remove="Migrations\20210516000256_addpaymaneVm.Designer.cs" />
     <Compile Remove="Migrations\20210516000759_addpaymaneVmAgain.cs" />
     <Compile Remove="Migrations\20210516000759_addpaymaneVmAgain.Designer.cs" />
+    <Compile Remove="Migrations\20210516061539_updateprojectrole.cs" />
+    <Compile Remove="Migrations\20210516061539_updateprojectrole.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
