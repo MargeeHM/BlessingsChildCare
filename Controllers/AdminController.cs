@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Blessings.Controllers
 {
-    [Authorize]
+    
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

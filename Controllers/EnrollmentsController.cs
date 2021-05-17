@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
-    [Authorize]
+ 
     public class EnrollmentsController : Controller
     {
         private readonly BlessingsdbContext _context;

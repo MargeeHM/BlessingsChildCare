@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
+using Blessings.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
-    [Authorize]
+    
     public class ChildrenController : Controller
     {
         private readonly BlessingsdbContext _context;
@@ -19,6 +20,22 @@ namespace Blessings.Controllers
         {
             _context = context;
         }
+
+     /*   public IActionResult Index() {
+            return View(_context.Child.ToList());
+        }*/
+       /* public IActionResult Index()
+        {
+            var dashboard = new DashBoradViewModel
+            {
+                Childrens = _context.Child.Count(),
+                Staffs = _context.Staff.Count(),
+                TotalAmount = _context.Payment.Sum(p => p.Amount),
+                DueAmount = _context.Payment.Sum(p => p.Amount),
+                ChildrenList = _context.Child.OrderByDescending(c => c.ChildId).ToList()
+            };
+            return View(dashboard);
+        }*/
 
         // GET: Children
         public async Task<IActionResult> Index(string searchString)

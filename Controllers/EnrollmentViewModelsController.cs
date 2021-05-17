@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
-    [Authorize]
+   
     public class EnrollmentViewModelsController : Controller
     {
         private readonly BlessingsdbContext _context;
