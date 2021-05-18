@@ -2,9 +2,66 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<div class="reportHeader">
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+
+                    <div class="card-title">
+                        <h4>Add Enrollment Info</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-elements">
+                            <form asp-controller="Enrollments" asp-action="Create" method="post">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label asp-for="Course" class="control-label"></label>
+                                            <select asp-for="Course" class="form-control" asp-items="ViewBag.Course">
+                                                <option value="">Please choose your course</option>
+                                            </select>
+                                              <input asp-for="Course" class="form-control" />
+                                            <span asp-validation-for="Course" class="text-danger"></span>
+                                         </div>
+                                        <div class="form-group">
+                                            <label asp-for="RoomNo" class="control-label"></label>
+                                            <input asp-for="RoomNo" class="form-control" />
+                                            <span asp-validation-for="RoomNo" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="EnrollmentDate" class="control-label"></label>
+                                            <input asp-for="EnrollmentDate" class="form-control" />
+                                            <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ChildId" class="control-label"></label>
+                                            <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
+                                        </div>
+                                        <div class="form-group">
+                                             <button type="submit" value="Create" class="btn btn-success"> Save Changes </button>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*    End PAge Content *@
+    </div>
+</div>
+
+
+<!--<div class="reportHeader">
     <h3>
         Create enrollment 
     </h3>
@@ -19,9 +76,9 @@
                 <label asp-for="Course" class="control-label"></label>
                 <select asp-for="Course" class="form-control" asp-items="ViewBag.Course">
                     <option value="">Please choose your course</option>
-                </select>
+                </select>-->
               @*  <input asp-for="Course" class="form-control" />*@
-                <span asp-validation-for="Course" class="text-danger"></span>
+                <!--<span asp-validation-for="Course" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RoomNo" class="control-label"></label>
@@ -36,28 +93,28 @@
             <div class="form-group">
                 <label asp-for="ChildId" class="control-label"></label>
                 <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
-            </div>
+            </div>-->
         @*    <div class="form-group">
                 <label asp-for="CourseFeeId" class="control-label"></label>
                 <select asp-for="CourseFeeId" class="form-control" asp-items="ViewBag.Course">
                     <option value="">Please choose your course</option>
                 </select>
             </div>*@
-            <div class="form-group">
+            <!--<div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
+</div>-->
 
 @*<div>
         <a asp-action="Index">Back to List</a>
     </div>*@
-<div>
+@*<div>
     <input type="button" class="button" value="Children List"
            onclick="location.href='@Url.Action("Index", "Children")'" />
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@

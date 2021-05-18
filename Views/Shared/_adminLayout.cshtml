@@ -97,15 +97,24 @@
                             <a class="  " href="@Url.Action("Index", "StaffLogs")" aria-expanded="false"><i class="fa fa-user-times"></i><span class="hide-menu">Staff TimeCard</span></a>
                         </li>
                         <li>
+                            <a class="  " href="@Url.Action("Index", "EnrollmentViewModels")" aria-expanded="false"><i class="fa fa-user-times"></i><span class="hide-menu">Enrollment List</span></a>
+                        </li>
+                        <li>
                             <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cart-plus"></i><span class="hide-menu">Billing </span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="@Url.Action("Index","Payments")">Payment List</a></li>
                             </ul>
                         </li>
                         <li>
+                            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">Parent Connection </span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="@Url.Action("Index","ChildActivities")">Child Activity</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a class="  " href="@Url.Action("Index", "Home")" aria-expanded="false"><i class="fa fa-print"></i><span class="hide-menu"> Reports</span></a>
                         </li>
-                       
+
                         <li><a class="  " asp-area="Indentity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" aria-expanded="false"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
 
                     </ul>

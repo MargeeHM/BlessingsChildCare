@@ -2,9 +2,92 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<div class="reportHeader">
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <form asp-controller="EnrollmentViewModels" asp-action="Index" method="get">
+                        <p>
+                            SEARCH: <input type="text" name="SearchString">
+                            <input type="submit" value="Filter" />
+                        </p>
+
+                    </form>
+                   
+                    <div class="card-body">
+                        <h4 class="card-title">Enrollment List</h4>
+                        <div class="table-responsive m-t-40">
+                            <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ChildFirstName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ChildBirthdate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Course)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.RoomNo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EnrollmentDate)
+                                        </th>
+
+                                        <th></th>
+                                        </tr>
+                                         </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ChildFirstName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ChildBirthdate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Course)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.RoomNo)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                                                </td>
+                                            <td>
+                                                <a  asp-action="Edit" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId"class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>Edit</a>
+                                                <a  href="@Url.Action("Create", "Payments", new {ChildId = item.ChildId})" class="btn btn-icon btn-success btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>Pay</a>
+                                               @* <a class="btn btn-outline-primary" asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Delete</a>*@
+                                        </td>
+                                             </tr>
+                                         }
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           @* End PAge Content *@
+    </div>
+</div>
+
+
+<!--<!--<div class="reportHeader">
    <h1>Enrollment List</h1>
 </div>
 
@@ -34,15 +117,13 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EnrollmentDate)
-            </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.ChildId)
-            </th>*@
-            <th></th>
+            </th>-->
+         
+            <!--<th></th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model)
+    <tbody>-->
+        @*@foreach (var item in Model)
         {
             <tr>
             
@@ -61,19 +142,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EnrollmentDate)
                 </td>
-             @*   <td>
-                    @Html.DisplayFor(modelItem => item.ChildId)
-                </td>*@
+            
             <td>
-                @*<a class="Create" href="@Url.Action("Create", "Enrollments", new { ChildId = item. })">Add enrollment Info</a>*@
+              
                 <a class="btn btn-outline-primary" asp-action="Edit" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Edit</a>
-                @*  <a class="btn btn-outline-primary" href="@Url.Action("Edit", "Enrollments", new {ChildId = item.ChildId})">Edit</a> |*@
+             
                 <a class="btn btn-outline-primary" href="@Url.Action("Create", "Payments", new {ChildId = item.ChildId})">Pay</a>
                 <a class="btn btn-outline-primary" asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Delete</a>
-                @*<a class="Details" asp-action="Details" asp-route-id="@item.EnrollmentListId">Details</a> |*@
-               @* <a class="btn btn-outline-primary" href="@Url.Action("Delete", "Enrollments", new {ChildId = item.ChildId})">Delete</a>*@
+                         
             </td>
             </tr>
-        }
-    </tbody>
-</table>
+        }*@
+    <!--</tbody>
+</table>-->
