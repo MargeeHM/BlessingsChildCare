@@ -19,11 +19,11 @@
                         </p>
 
                     </form>
-                   
+
                     <div class="card-body">
                         <h4 class="card-title">Enrollment List</h4>
                         <div class="table-responsive m-t-40">
-                            <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                            <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
 
@@ -44,42 +44,45 @@
                                         </th>
 
                                         <th></th>
-                                        </tr>
-                                         </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.ChildFirstName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.ChildBirthdate)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Course)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.RoomNo)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
-                                                </td>
                                             <td>
-                                                <a  asp-action="Edit" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId"class="btn btn-icon btn-warning btn-xs m-b-5">
-                                                    <i class="fa fa-edit"></i>Edit</a>
-                                                <a  href="@Url.Action("Create", "Payments", new {ChildId = item.ChildId})" class="btn btn-icon btn-success btn-xs m-b-5">
-                                                    <i class="fa fa-edit"></i>Pay</a>
-                                               @* <a class="btn btn-outline-primary" asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Delete</a>*@
-                                        </td>
-                                             </tr>
-                                         }
-                                        </tbody>
-                                </table>
-                            </div>
+                                                @Html.DisplayFor(modelItem => item.ChildFirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ChildBirthdate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Course)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.RoomNo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId" class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>Edit
+                                                </a>
+                                                <a href="@Url.Action("Create", "Payments", new {ChildId = item.ChildId})" class="btn btn-icon btn-success btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>Pay
+                                                </a>
+                                                @* <a class="btn btn-outline-primary" asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Delete</a>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
                 </div>
             </div>
            @* End PAge Content *@

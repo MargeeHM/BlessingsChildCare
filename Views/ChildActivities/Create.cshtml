@@ -2,47 +2,108 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
 
-<h4>ChildActivity</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ChildId" class="control-label"></label>
-                <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Activitytime" class="control-label"></label>
-                <input asp-for="Activitytime" class="form-control" />
-                <span asp-validation-for="Activitytime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ActivityName" class="control-label"></label>
-                <input asp-for="ActivityName" class="form-control" />
-                <span asp-validation-for="ActivityName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ActivityImage" class="control-label"></label>
-                <input asp-for="ActivityImage" accept="image/*"/>
-                <span asp-validation-for="ActivityImage" class="text-danger"></span>
-            </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                    <div class="card-title">
+                        <h4>Add ChildActivity info</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-elements">
+                            <form asp-controller="ChildActivities" asp-action="Create" method="post">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label asp-for="ChildId" class="control-label"></label>
+                                            <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Activitytime" class="control-label"></label>
+                                            <input asp-for="Activitytime" class="form-control" />
+                                            <span asp-validation-for="Activitytime" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ActivityName" class="control-label"></label>
+                                            <input asp-for="ActivityName" class="form-control" />
+                                            <span asp-validation-for="ActivityName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ActivityImage" class="control-label"></label>
+                                            <input asp-for="ActivityImage" accept="image/*" />
+                                            <span asp-validation-for="ActivityImage" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" value="Create" class="btn btn-success"> Save Changes </button>
+                                        </div>
+                                        <div>
+                                            <a asp-action="Index">Back to List</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
+        @* End PAge Content *@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+
+
+
+
+@*<h1>Create</h1>
+
+    <h4>ChildActivity</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ChildId" class="control-label"></label>
+                    <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Activitytime" class="control-label"></label>
+                    <input asp-for="Activitytime" class="form-control" />
+                    <span asp-validation-for="Activitytime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ActivityName" class="control-label"></label>
+                    <input asp-for="ActivityName" class="form-control" />
+                    <span asp-validation-for="ActivityName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ActivityImage" class="control-label"></label>
+                    <input asp-for="ActivityImage" accept="image/*"/>
+                    <span asp-validation-for="ActivityImage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

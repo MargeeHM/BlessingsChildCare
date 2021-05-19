@@ -2,9 +2,75 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="form-group">
+                        <a value="Create" href="@Url.Action("Create", "CourseFees")" class="btn btn-success"> Create Coursefee </a>
+                    </div>
+                    <form asp-controller="CourseFees" asp-action="Index" method="get">
+                        <p>
+                            Search:
+                            <input type="text" name="SearchString">
+
+                        </p>
+                    </form>
+                    <div class="card-body">
+                        <h4 class="card-title">CourseFee List</h4>
+                        <div class="table-responsive m-t-40">
+                            <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Course)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Fee)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Course)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Fee)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.CourseFeeId" class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>Edit
+                                                </a> |
+                                                <a asp-action="Details" asp-route-id="@item.CourseFeeId" class="btn btn-icon btn-success btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>Details
+                                                </a> |
+                                                <a asp-action="Delete" asp-route-id="@item.CourseFeeId" class="btn btn-icon btn-danger btn-xs m-b-5">
+                                                    <i class="fa fa-remove"></i>Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* End PAge Content *@
+    </div>
+</div>
+
+@*<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -38,4 +104,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

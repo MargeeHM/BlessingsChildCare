@@ -2,58 +2,133 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
-<div class="reportHeader">
-    <h3>
-        Payment details
-    </h3>
+
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div></div>
+                    <div class="card-body">
+                        <h4 class="card-title">Payment Details</h4>
+                        <div class="table-responsive m-t-40">
+                        </div>
+                        <div>
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PayerName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PayerName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PaymentType)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PaymentType)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Amount)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Amount)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PaymentDate)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PaymentDate)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Status)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Child)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Child.ChildFirstName)
+                                </dd>
+                            </dl>
+                        </div>
+
+                                       
+
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End PAge Content -->
+    </div>
 </div>
 
 
-<div>
-    <h4>Payment</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PayerName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PayerName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PaymentType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PaymentType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PaymentDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PaymentDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Child)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Child.ChildFirstName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PaymentId">Edit</a> |
-    <input type="button" class="button" value="Children List"
-           onclick="location.href='@Url.Action("Index", "Children")'" />
-</div>
+
+
+
+
+
+
+@*<div class="reportHeader">
+        <h3>
+            Payment details
+        </h3>
+    </div>
+
+
+    <div>
+        <h4>Payment</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PayerName)
+            </dt>
+            <dd class="col-sm-10">
+               @Html.DisplayFor(model => model.PayerName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PaymentType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Amount)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PaymentDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PaymentDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Child)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Child.ChildFirstName)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.PaymentId">Edit</a> |
+        <input type="button" class="button" value="Children List"
+               onclick="location.href='@Url.Action("Index", "Children")'" />
+    </div>*@

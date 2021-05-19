@@ -2,9 +2,90 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Edit Staff Info</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-elements">
+                            <form asp-controller="Staffs" asp-action="Edit" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input asp-for="StaffId" type="hidden" />
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label asp-for="StaffFirstName" class="control-label"></label>
+                                            <input asp-for="StaffFirstName" class="form-control" />
+                                            <span asp-validation-for="StaffFirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="StaffLastName" class="control-label"></label>
+                                            <input asp-for="StaffLastName" class="form-control" />
+                                            <span asp-validation-for="StaffLastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Room" class="control-label"></label>
+                                            <input asp-for="Room" class="form-control" />
+                                            <span asp-validation-for="Room" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Street" class="control-label"></label>
+                                            <input asp-for="Street" class="form-control" />
+                                            <span asp-validation-for="Street" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="City" class="control-label"></label>
+                                            <input asp-for="City" class="form-control" />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="State" class="control-label"></label>
+                                            <input asp-for="State" class="form-control" />
+                                            <span asp-validation-for="State" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Zipcode" class="control-label"></label>
+                                            <input asp-for="Zipcode" class="form-control" />
+                                            <span asp-validation-for="Zipcode" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Email" class="control-label"></label>
+                                            <input asp-for="Email" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Phone" class="control-label"></label>
+                                            <input asp-for="Phone" class="form-control" />
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success"> Update Changes </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+</div>
+
+
+
+
+@*<h1>Edit</h1>
 
 <h4>Staff</h4>
 <hr />
@@ -71,4 +152,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@

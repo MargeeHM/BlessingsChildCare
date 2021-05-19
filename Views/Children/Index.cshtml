@@ -17,9 +17,9 @@
                     </div>
                     <form asp-controller="Children" asp-action="Index" method="get">
                         <p>
-                            Search: 
+                            Search:
                             <input type="text" name="SearchString">
-                            
+
                         </p>
                     </form>
 
@@ -87,9 +87,10 @@
                                                 <a asp-action="Edit" asp-route-id="@item.ChildId" class="btn btn-icon btn-warning btn-xs m-b-5">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <a asp-action="Details" asp-route-id="@item.ChildId"  class="btn btn-icon btn-success btn-xs m-b-5">
+                                                <a asp-action="Details" asp-route-id="@item.ChildId" class="btn btn-icon btn-success btn-xs m-b-5">
                                                     <i class="fa fa-edit"></i> Enroll
                                                 </a>
+
                                             </td>
                                         </tr>
                                     }
@@ -97,6 +98,7 @@
                             </table>
                         </div>
                     </div>
+                    <a asp-action="Index">Back to List</a>
                 </div>
             </div>
         </div>

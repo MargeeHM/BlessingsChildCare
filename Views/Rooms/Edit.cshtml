@@ -2,38 +2,87 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Edit Room Info</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-elements">
+                            <form asp-controller="Rooms" asp-action="Edit" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input asp-for="RoomId" type="hidden" />
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label asp-for="RoomNo" class="control-label"></label>
+                                            <input asp-for="RoomNo" class="form-control" />
+                                            <span asp-validation-for="RoomNo" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Course" class="control-label"></label>
+                                            <input asp-for="Course" class="form-control" />
+                                            <span asp-validation-for="Course" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success"> Update Changes </button>
+                                        </div>
 
-<h4>Room</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RoomId" />
-            <div class="form-group">
-                <label asp-for="RoomNo" class="control-label"></label>
-                <input asp-for="RoomNo" class="form-control" />
-                <span asp-validation-for="RoomNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Course" class="control-label"></label>
-                <input asp-for="Course" class="form-control" />
-                <span asp-validation-for="Course" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <!-- End PAge Content -->
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+
+
+
+
+@*<h1>Edit</h1>
+
+    <h4>Room</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="RoomId" />
+                <div class="form-group">
+                    <label asp-for="RoomNo" class="control-label"></label>
+                    <input asp-for="RoomNo" class="form-control" />
+                    <span asp-validation-for="RoomNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Course" class="control-label"></label>
+                    <input asp-for="Course" class="form-control" />
+                    <span asp-validation-for="Course" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
