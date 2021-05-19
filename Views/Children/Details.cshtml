@@ -5,10 +5,349 @@
     Blessings.Models.Enrollment enrollmentModel = null;
     Blessings.Models.Emergency emergencyModel = null;
     Blessings.Models.Medical medicalModel = null;
-  
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+
 }
 
-<div class="reportHeader">
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div></div>
+                    <div class="card-body">
+                        <h4 class="card-title">@Model.ChildFirstName @Model.ChildLastName Details</h4>
+                        <div class="table-responsive m-t-40">
+                        </div>
+                        <div>
+                            <dl class="row">
+
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ChildFirstName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ChildFirstName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ChildLastName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ChildLastName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ChildBirthdate)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ChildBirthdate)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Age)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Age)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.FatherFirstName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.FatherFirstName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.FatherLastName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.FatherLastName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.MotherFirstName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.MotherFirstName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.MotherLastName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.MotherLastName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ContactPhone)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ContactPhone)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Street)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Street)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.City)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.City)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.State)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.State)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Zipcode)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Zipcode)
+                                </dd>
+                            </dl>
+                        </div>
+
+                        <div class="container-fluid">
+                            <!-- Start Page Content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="form-group">
+                                            <a value="Create" href="@Url.Action("Create", "Enrollments",new { ChildId = Model.ChildId } )" class="btn btn-success"> Add Enrollment Info </a>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h4 class="card-title">Enrollment Info</h4>
+                                            <div class="table-responsive m-t-40">
+                                                <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => enrollmentModel.Course)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => enrollmentModel.RoomNo)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => enrollmentModel.EnrollmentDate)
+                                                            </th>
+
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => enrollmentModel.Child)
+                                                            </th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.Enrollment)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Course)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.RoomNo)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                                                </td>
+                                                                <td>
+                                                                    <a asp-action="Edit" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
+                                                                    <a asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End PAge Content -->
+                        </div>
+
+                        <div class="container-fluid">
+                            <!-- Start Page Content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="form-group">
+                                            <a value="Create" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId } )" class="btn btn-success"> Add Emergency Contact info </a>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h4 class="card-title">Emergency Contact Info</h4>
+                                            <div class="table-responsive m-t-40">
+                                                <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => emergencyModel.EmergencyContactFirstName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => emergencyModel.EmergencyContactLastName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => emergencyModel.EmergencyContactPhone)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => emergencyModel.Relationship)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => emergencyModel.Child)
+                                                            </th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.Emergency)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.EmergencyContactFirstName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.EmergencyContactLastName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.EmergencyContactPhone)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Relationship)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                                                </td>
+                                                                <td>
+                                                                    <a  asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a> 
+                                                                    <a  asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End PAge Content -->
+                        </div>
+
+                        <div class="container-fluid">
+                            <!-- Start Page Content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="form-group">
+                                            <a value="Create" href="@Url.Action("Create", "Medicals", new { ChildId = Model.ChildId } )" class="btn btn-success"> Add Medical Info </a>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h4 class="card-title">Medical Info</h4>
+                                            <div class="table-responsive m-t-40">
+                                                <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.PersonToContactFirstName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.PersonToContactLastName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.PersonToContactPhone)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.ChildsDoctorFirstName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.ChildsDoctorLastName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.ChildsDoctorPhone)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.RegularlyUsedHospitalName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.DiaetryRestriction)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.MedicalIssue)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.Child)
+                                                            </th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.Medical)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.PersonToContactFirstName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.PersonToContactLastName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.PersonToContactPhone)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ChildsDoctorFirstName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ChildsDoctorLastName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ChildsDoctorPhone)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.RegularlyUsedHospitalName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.DiaetryRestriction)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.MedicalIssue)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                                                </td>
+                                                                <td>
+                                                                    <a  asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a> 
+                                                                    <a  asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End PAge Content -->
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+       
+        <!-- End PAge Content -->
+    </div>
+</div>
+
+
+
+
+
+<!--<div class="reportHeader">
     <h1>
         Child @Model.ChildLastName @Model.ChildFirstName details
     </h1>
@@ -21,6 +360,7 @@
     </p>
     <hr />
     <dl class="row">
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ChildFirstName)
         </dt>
@@ -115,22 +455,22 @@
     </div>
 
     <hr />
-    <a class="btn btn-outline-primary" href="@Url.Action("Create", "Enrollments", new { ChildId = Model.ChildId })">Add enrollment Info</a>
-    @*<a class="Create" asp-action="Create" asp-route-id="@Model.ChildId" asp-controller="Enrollments">Add enrollment Info</a>*@
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => enrollmentModel.Course)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => enrollmentModel.RoomNo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => enrollmentModel.EnrollmentDate)
-                </th>
-                @**@
-                <th>
+    <a class="btn btn-outline-primary" href="@Url.Action("Create", "Enrollments", new { ChildId = Model.ChildId })">Add enrollment Info</a>-->
+@*<a class="Create" asp-action="Create" asp-route-id="@Model.ChildId" asp-controller="Enrollments">Add enrollment Info</a>*@
+<!--<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => enrollmentModel.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => enrollmentModel.RoomNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => enrollmentModel.EnrollmentDate)
+            </th>-->
+@**@
+<!--<th>
                     @Html.DisplayNameFor(model => enrollmentModel.Child)
                 </th>
                 <th></th>
@@ -171,8 +511,8 @@
     </div>
 
     <hr />
-    
-    <a  class="btn btn-outline-primary" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId })">Add Emergency Contact Info</a>
+
+    <a class="btn btn-outline-primary" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId })">Add Emergency Contact Info</a>
 
     <table class="table">
         <thead>
@@ -224,96 +564,94 @@
     </table>
 </div>
 
-    <div style="margin-top: 40px;">
+<div style="margin-top: 40px;">
 
-        <div class="reportHeader">
-            <h5 class="text-truncate">
-                Medical Info
-            </h5>
-        </div>
-
-        <hr />
-        <a class="btn btn-outline-primary" href="@Url.Action("Create", "Medicals", new { ChildId = Model.ChildId })">Add Medical Info</a>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.PersonToContactFirstName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.PersonToContactLastName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.PersonToContactPhone)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.ChildsDoctorFirstName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.ChildsDoctorLastName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.ChildsDoctorPhone)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.RegularlyUsedHospitalName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.DiaetryRestriction)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.MedicalIssue)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => medicalModel.Child)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Medical)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PersonToContactFirstName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PersonToContactLastName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PersonToContactPhone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ChildsDoctorFirstName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ChildsDoctorLastName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ChildsDoctorPhone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RegularlyUsedHospitalName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DiaetryRestriction)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MedicalIssue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals">Edit</a> |
-                            <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
+    <div class="reportHeader">
+        <h5 class="text-truncate">
+            Medical Info
+        </h5>
     </div>
 
-    
+    <hr />
+    <a class="btn btn-outline-primary" href="@Url.Action("Create", "Medicals", new { ChildId = Model.ChildId })">Add Medical Info</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.PersonToContactFirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.PersonToContactLastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.PersonToContactPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.ChildsDoctorFirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.ChildsDoctorLastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.ChildsDoctorPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.RegularlyUsedHospitalName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.DiaetryRestriction)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.MedicalIssue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => medicalModel.Child)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Medical)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonToContactFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonToContactLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonToContactPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChildsDoctorFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChildsDoctorLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChildsDoctorPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegularlyUsedHospitalName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaetryRestriction)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicalIssue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals">Edit</a> |
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>-->

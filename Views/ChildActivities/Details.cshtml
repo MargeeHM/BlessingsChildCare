@@ -2,47 +2,109 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div></div>
+                    <div class="card-body">
+                        <h4 class="card-title">ChildActivity Details</h4>
+                        <div class="table-responsive m-t-40">
+                        </div>
+                        <div>
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Activitytime)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Activitytime)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ActivityName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ActivityName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ImageName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ImageName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Child)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Child.ChildFirstName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    Uploaded Image
+                                </dt>
+                                <dd class="col-sm-10">
+                                    <img src="@("~/Image/"+ Model.ImageName)" width="250px" height="250px" asp-append-version="true" />
+                                </dd>
+                            </dl>
+                        </div>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@Model.ChildActivityId">Edit</a> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
 
-<div>
-    <h4>ChildActivity</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Activitytime)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Activitytime)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ActivityName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ActivityName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Child)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Child.ChildFirstName)
-        </dd>
-        <dt class="col-sm-2">
-            Uploaded Image
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@("~/Image/"+ Model.ImageName)" width="250px" height="250px" asp-append-version="true" />
-        </dd>
-    </dl>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End PAge Content -->
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ChildActivityId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+@*<h1>Details</h1>
+
+    <div>
+        <h4>ChildActivity</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Activitytime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Activitytime)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ActivityName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ActivityName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ImageName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ImageName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Child)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Child.ChildFirstName)
+            </dd>
+            <dt class="col-sm-2">
+                Uploaded Image
+            </dt>
+            <dd class="col-sm-10">
+                <img src="@("~/Image/"+ Model.ImageName)" width="250px" height="250px" asp-append-version="true" />
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ChildActivityId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
