@@ -4,14 +4,16 @@ using Blessings.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blessings.Migrations
 {
     [DbContext(typeof(BlessingsdbContext))]
-    partial class BlessingsdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210519225111_adddashboardvm")]
+    partial class adddashboardvm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,6 @@ namespace Blessings.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
-                    b.Property<int?>("DashBoradViewModeldashboardvmId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FatherFirstName")
                         .IsRequired()
                         .HasColumnName("fatherFirstName")
@@ -113,8 +112,6 @@ namespace Blessings.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ChildId");
-
-                    b.HasIndex("DashBoradViewModeldashboardvmId");
 
                     b.ToTable("Child");
                 });
@@ -554,30 +551,6 @@ namespace Blessings.Migrations
                     b.ToTable("StaffLog");
                 });
 
-            modelBuilder.Entity("Blessings.ViewModel.DashBoradViewModel", b =>
-                {
-                    b.Property<int>("dashboardvmId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Childrens")
-                        .HasColumnType("int");
-
-                    b.Property<float>("DueAmount")
-                        .HasColumnType("real");
-
-                    b.Property<int>("Staffs")
-                        .HasColumnType("int");
-
-                    b.Property<float>("TotalAmount")
-                        .HasColumnType("real");
-
-                    b.HasKey("dashboardvmId");
-
-                    b.ToTable("DashBoradViewModel");
-                });
-
             modelBuilder.Entity("Blessings.ViewModel.EnrollmentViewModel", b =>
                 {
                     b.Property<int>("EnrollmentListId")
@@ -873,13 +846,6 @@ namespace Blessings.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Blessings.Models.Child", b =>
-                {
-                    b.HasOne("Blessings.ViewModel.DashBoradViewModel", null)
-                        .WithMany("ChildrenList")
-                        .HasForeignKey("DashBoradViewModeldashboardvmId");
                 });
 
             modelBuilder.Entity("Blessings.Models.ChildActivity", b =>

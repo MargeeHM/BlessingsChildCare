@@ -172,5 +172,7 @@ namespace Blessings.Models
         public DbSet<Blessings.ViewModel.PaymentVM> PaymentVM { get; set; }
 
         public DbSet<Blessings.Models.ProjectRole> ProjectRole { get; set; }
+
+        public DbSet<Blessings.ViewModel.DashBoradViewModel> DashBoradViewModel { get; set; }
     }
 }

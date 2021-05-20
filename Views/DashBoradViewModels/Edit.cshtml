@@ -1,0 +1,47 @@
+﻿@model Blessings.ViewModel.DashBoradViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Identity/Pages/_ViewStart.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>DashBoradViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="dashboardvmId" />
+            <div class="form-group">
+                <label asp-for="Childrens" class="control-label"></label>
+                <input asp-for="Childrens" class="form-control" />
+                <span asp-validation-for="Childrens" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staffs" class="control-label"></label>
+                <input asp-for="Staffs" class="form-control" />
+                <span asp-validation-for="Staffs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="form-control" />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DueAmount" class="control-label"></label>
+                <input asp-for="DueAmount" class="form-control" />
+                <span asp-validation-for="DueAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

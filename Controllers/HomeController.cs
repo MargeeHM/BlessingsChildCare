@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Blessings.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
