@@ -6,29 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
-using Microsoft.AspNetCore.Authorization;
+using Blessings.ViewModel;
 
 namespace Blessings.Controllers
 {
-    /*[Authorize(Roles = "Administrator")]*/
-    [Authorize]
-    public class StaffLogsController : Controller
+    public class DashBoradViewModelsController : Controller
     {
         private readonly BlessingsdbContext _context;
 
-        public StaffLogsController(BlessingsdbContext context)
+        public DashBoradViewModelsController(BlessingsdbContext context)
         {
             _context = context;
         }
 
-        // GET: StaffLogs
+        // GET: DashBoradViewModels
         public async Task<IActionResult> Index()
         {
-            var blessingsdbContext = _context.StaffLog.Include(s => s.Staff);
-            return View(await blessingsdbContext.ToListAsync());
+            return View(await _context.DashBoradViewModel.ToListAsync());
         }
 
-        // GET: StaffLogs/Details/5
+        // GET: DashBoradViewModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,45 +33,39 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var staffLog = await _context.StaffLog
-                .Include(s => s.Staff)
-                .FirstOrDefaultAsync(m => m.StafflogId == id);
-            if (staffLog == null)
+            var dashBoradViewModel = await _context.DashBoradViewModel
+                .FirstOrDefaultAsync(m => m.dashboardvmId == id);
+            if (dashBoradViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(staffLog);
+            return View(dashBoradViewModel);
         }
 
-        // GET: StaffLogs/Create
+        // GET: DashBoradViewModels/Create
         public IActionResult Create()
         {
-           
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "StaffFirstName");
             return View();
         }
 
-        // POST: StaffLogs/Create
+        // POST: DashBoradViewModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StafflogId,Day,StaffCheckIn,StaffCheckOut,StaffId")] StaffLog staffLog)
+        public async Task<IActionResult> Create([Bind("dashboardvmId,Childrens,Staffs,TotalAmount,DueAmount")] DashBoradViewModel dashBoradViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(staffLog);
+                _context.Add(dashBoradViewModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            var staff = from s in _context.Staff where s.StaffId == staffLog.StaffId select s;
-            ViewData["StaffId"] = new SelectList(staff, "StaffId", "StaffFirstName", staffLog.StaffId);
-         
-            return View(staffLog);
+            return View(dashBoradViewModel);
         }
 
-        // GET: StaffLogs/Edit/5
+        // GET: DashBoradViewModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,23 +73,22 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var staffLog = await _context.StaffLog.FindAsync(id);
-            if (staffLog == null)
+            var dashBoradViewModel = await _context.DashBoradViewModel.FindAsync(id);
+            if (dashBoradViewModel == null)
             {
                 return NotFound();
             }
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "City", staffLog.StaffId);
-            return View(staffLog);
+            return View(dashBoradViewModel);
         }
 
-        // POST: StaffLogs/Edit/5
+        // POST: DashBoradViewModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StafflogId,Day,StaffCheckIn,StaffCheckOut,StaffId")] StaffLog staffLog)
+        public async Task<IActionResult> Edit(int id, [Bind("dashboardvmId,Childrens,Staffs,TotalAmount,DueAmount")] DashBoradViewModel dashBoradViewModel)
         {
-            if (id != staffLog.StafflogId)
+            if (id != dashBoradViewModel.dashboardvmId)
             {
                 return NotFound();
             }
@@ -107,12 +97,12 @@ namespace Blessings.Controllers
             {
                 try
                 {
-                    _context.Update(staffLog);
+                    _context.Update(dashBoradViewModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StaffLogExists(staffLog.StafflogId))
+                    if (!DashBoradViewModelExists(dashBoradViewModel.dashboardvmId))
                     {
                         return NotFound();
                     }
@@ -123,11 +113,10 @@ namespace Blessings.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "City", staffLog.StaffId);
-            return View(staffLog);
+            return View(dashBoradViewModel);
         }
 
-        // GET: StaffLogs/Delete/5
+        // GET: DashBoradViewModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,31 +124,30 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var staffLog = await _context.StaffLog
-                .Include(s => s.Staff)
-                .FirstOrDefaultAsync(m => m.StafflogId == id);
-            if (staffLog == null)
+            var dashBoradViewModel = await _context.DashBoradViewModel
+                .FirstOrDefaultAsync(m => m.dashboardvmId == id);
+            if (dashBoradViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(staffLog);
+            return View(dashBoradViewModel);
         }
 
-        // POST: StaffLogs/Delete/5
+        // POST: DashBoradViewModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var staffLog = await _context.StaffLog.FindAsync(id);
-            _context.StaffLog.Remove(staffLog);
+            var dashBoradViewModel = await _context.DashBoradViewModel.FindAsync(id);
+            _context.DashBoradViewModel.Remove(dashBoradViewModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StaffLogExists(int id)
+        private bool DashBoradViewModelExists(int id)
         {
-            return _context.StaffLog.Any(e => e.StafflogId == id);
+            return _context.DashBoradViewModel.Any(e => e.dashboardvmId == id);
         }
     }
 }

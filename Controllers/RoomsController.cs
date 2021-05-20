@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
-    
+    /*[Authorize(Roles = "Administrator")]*/
+    [Authorize]
     public class RoomsController : Controller
     {
         private readonly BlessingsdbContext _context;

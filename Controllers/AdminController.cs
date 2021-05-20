@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 
 namespace Blessings.Controllers
 {
-    
+    /*[Authorize(Roles ="Administrator")]*/
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
 
-        public AdminController(RoleManager<IdentityRole> roleManager) 
+
+        public AdminController(RoleManager<IdentityRole> roleManager)
         {
             this.roleManager = roleManager;
-        }
+        }    
         public IActionResult Index()
         {
+            
             return View();
         }
 

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
+    /*[Authorize(Roles = "Administrator")]*/
+    [Authorize]
 
     public class StaffsController : Controller
     {
