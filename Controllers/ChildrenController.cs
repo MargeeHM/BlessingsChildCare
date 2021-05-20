@@ -22,21 +22,21 @@ namespace Blessings.Controllers
             _context = context;
         }
 
-     /*   public IActionResult Index() {
-            return View(_context.Child.ToList());
-        }*/
-       /* public IActionResult Index()
-        {
-            var dashboard = new DashBoradViewModel
-            {
-                Childrens = _context.Child.Count(),
-                Staffs = _context.Staff.Count(),
-                TotalAmount = _context.Payment.Sum(p => p.Amount),
-                DueAmount = _context.Payment.Sum(p => p.Amount),
-                ChildrenList = _context.Child.OrderByDescending(c => c.ChildId).ToList()
-            };
-            return View(dashboard);
-        }*/
+        /*   public IActionResult Index() {
+               return View(_context.Child.ToList());
+           }*/
+        //public IActionResult Index()
+        //{
+        //    var dashboard = new DashBoradViewModel
+        //    {
+        //        Childrens = _context.Child.Count(),
+        //        Staffs = _context.Staff.Count(),
+        //        TotalAmount = _context.Payment.Sum(p => p.Amount),
+        //        DueAmount = _context.Payment.Sum(p => p.Amount),
+        //        ChildrenList = _context.Child.OrderByDescending(c => c.ChildId).ToList()
+        //    };
+        //    return View(dashboard);
+        //}
 
         // GET: Children
         public async Task<IActionResult> Index(string searchString)

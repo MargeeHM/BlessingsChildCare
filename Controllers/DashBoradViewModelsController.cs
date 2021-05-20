@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
 using Blessings.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
+    [Authorize]
     public class DashBoradViewModelsController : Controller
     {
         private readonly BlessingsdbContext _context;
@@ -18,12 +20,15 @@ namespace Blessings.Controllers
         {
             _context = context;
         }
-
-        // GET: DashBoradViewModels
+        public IActionResult Index()
+        {
+            return View();
+        }
+       /* // GET: DashBoradViewModels
         public async Task<IActionResult> Index()
         {
             return View(await _context.DashBoradViewModel.ToListAsync());
-        }
+        }*/
 
         // GET: DashBoradViewModels/Details/5
         public async Task<IActionResult> Details(int? id)
