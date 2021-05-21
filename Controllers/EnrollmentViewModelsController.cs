@@ -34,6 +34,7 @@ namespace Blessings.Controllers
         {
             var result = from c in _context.Child
                          join e in _context.Enrollment on c.ChildId equals e.ChildId
+                         where e.EnrollmentEndDate >= DateTime.Today || e.EnrollmentEndDate == null
                          select new EnrollmentViewModel
                          {
                              EnrollmentId = e.EnrollmentId,
@@ -42,7 +43,8 @@ namespace Blessings.Controllers
                              Course = e.Course,
                              RoomNo = e.RoomNo,
                              EnrollmentDate = e.EnrollmentDate,
-                             ChildId = c.ChildId
+                             EnrollmentEndDate = e.EnrollmentEndDate,
+                             ChildId = c.ChildId,
                          };
 
             if (!String.IsNullOrEmpty(searchString))
@@ -118,9 +120,9 @@ namespace Blessings.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentListId,EnrollmentId,ChildFirstName,ChildBirthdate,Course,RoomNo,EnrollmentDate,ChildId")] EnrollmentViewModel enrollmentViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentListId,EnrollmentId,ChildFirstName,ChildBirthdate,Course,RoomNo,EnrollmentDate,EnrollmentEndDate,ChildId")] EnrollmentViewModel enrollmentViewModel)
         {
-            if (id != enrollmentViewModel.EnrollmentListId)
+            if (id != enrollmentViewModel.EnrollmentId)
             {
                 return NotFound();
             }
@@ -129,7 +131,18 @@ namespace Blessings.Controllers
             {
                 try
                 {
-                    _context.Update(enrollmentViewModel);
+                    Enrollment enrollment = new Enrollment();
+                    Child child = new Child();
+                    enrollment.EnrollmentId = enrollmentViewModel.EnrollmentId;
+                    child.ChildFirstName = enrollmentViewModel.ChildFirstName;
+                    child.ChildBirthdate = enrollmentViewModel.ChildBirthdate;
+                    enrollment.Course = enrollmentViewModel.Course;
+                    enrollment.RoomNo = enrollmentViewModel.RoomNo;
+                    enrollment.EnrollmentDate = enrollmentViewModel.EnrollmentDate;
+                    enrollment.EnrollmentEndDate = enrollmentViewModel.EnrollmentEndDate;
+
+                    _context.Child.Update(child);
+                    _context.Enrollment.Update(enrollment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

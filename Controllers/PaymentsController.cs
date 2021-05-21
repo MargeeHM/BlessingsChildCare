@@ -51,8 +51,10 @@ namespace Blessings.Controllers
         // GET: Payments/Create
         public IActionResult Create(int ChildId)
         {
-            var children = from e in _context.Child where e.ChildId == ChildId select e;
-            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
+            var children = from c in _context.Child
+                           join e in _context.Enrollment on c.ChildId equals e.ChildId
+                           select c;
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildFirstName");
 
             /*    var coursefee = from cf in _context.CourseFees join e in _context.Enrollment on cf.Course equals e.Course select cf.Fee;
                 double amount = Convert.ToDouble(coursefee);

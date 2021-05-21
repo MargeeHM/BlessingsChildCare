@@ -54,7 +54,7 @@
                                             @Html.DisplayNameFor(model => model.Status)
                                         </th>
 
-                                        <th></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,15 +95,15 @@
                                                 }
                                                 @if (item.Status == "Paid")
                                                 {
-                                            <label class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</label>
+                                                     <label class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</label>
 
                                                 }
                                             </td>
-
+@*
                                             <td>
                                                 <a asp-action="Delete" asp-route-id="@item.PaymentListId" class="btn btn-icon btn-danger btn-xs m-b-5">
                                                     <i class="fa fa-remove"></i>Delete</a>
-                                            </td>
+                                            </td>*@
                                         </tr>
                                     }
                                 </tbody>
@@ -155,7 +155,7 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
          
-            <th></th>
+        
         </tr>
     </thead>
     <tbody>

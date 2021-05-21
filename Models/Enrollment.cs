@@ -25,6 +25,11 @@ namespace Blessings.Models
         [Column("enrollmentDate", TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime EnrollmentDate { get; set; }
+
+        [Display(Name = "Enrollment End Date")]
+        [DataType(DataType.Date)]
+        public DateTime? EnrollmentEndDate { get; set; }
+
         [Column("child_id")]
         public int ChildId { get; set; }
 

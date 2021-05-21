@@ -27,6 +27,7 @@ namespace Blessings.Controllers
         {
             var result = from c in _context.Child
                          join e in _context.Enrollment on c.ChildId equals e.ChildId
+                         where e.EnrollmentEndDate >= DateTime.Today || e.EnrollmentEndDate == null
                          join p in _context.Payment on e.ChildId equals p.ChildId
                          select new PaymentVM
                          {
@@ -159,14 +160,14 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var paymentVM = await _context.PaymentVM
-                .FirstOrDefaultAsync(m => m.PaymentListId == id);
-            if (paymentVM == null)
+            var payment = await _context.Payment
+                .FirstOrDefaultAsync(m => m.PaymentId == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
-            return View(paymentVM);
+            return View(payment);
         }
 
         // POST: PaymentVMs/Delete/5
@@ -174,8 +175,8 @@ namespace Blessings.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paymentVM = await _context.PaymentVM.FindAsync(id);
-            _context.PaymentVM.Remove(paymentVM);
+            var payment = await _context.Payment.FindAsync(id);
+            _context.Payment.Remove(payment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
