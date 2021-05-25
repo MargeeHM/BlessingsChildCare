@@ -86,11 +86,13 @@
                                                 <a asp-action="Edit" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId" class="btn btn-icon btn-warning btn-xs m-b-5">
                                                     <i class="fa fa-edit"></i>Edit
                                                 </a>
-                                                   <a href="@Url.Action("Create", "Payments", new { ChildId = item.ChildId })" class="btn btn-icon btn-success btn-xs m-b-5">
+                                             
+                                                    <a href="@Url.Action("Create", "Payments", new { ChildId = item.ChildId })" class="btn btn-icon btn-success btn-xs m-b-5">
                                                         <i class="fa fa-edit"></i>Pay
                                                     </a>
-                                               @* <a class="btn btn-outline-primary" asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Delete</a>*@
-                                            </td>
+                                          
+                                                    @* <a class="btn btn-outline-primary" asp-action="Delete" asp-controller="Enrollments" asp-route-id="@item.EnrollmentId">Delete</a>*@
+                                                </td>
                                         </tr>
                                     }
                                 </tbody>

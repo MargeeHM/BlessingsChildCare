@@ -45,6 +45,7 @@ namespace Blessings.Controllers
                              EnrollmentDate = e.EnrollmentDate,
                              EnrollmentEndDate = e.EnrollmentEndDate,
                              ChildId = c.ChildId,
+                     
                          };
 
             if (!String.IsNullOrEmpty(searchString))

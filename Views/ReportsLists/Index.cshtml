@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Blessings.Models.ReportsList>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card horizontal">
+                    <a><i class="fa fa-user-times"></i> <strong>sign In-out Children Reports</strong></a>
+                    <div>
+                        <div>
+                            <a href="@Url.Action("Index", "Sign_InOutChildren")" >Attendance</a></>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+</div>
+

@@ -43,8 +43,8 @@ namespace Blessings.ViewModel
         [Display(Name = "Enrollment End Date")]
         [DataType(DataType.Date)]
         public DateTime? EnrollmentEndDate { get; set; }
-        
-       
+
+    
         public int? ChildId { get; set; }
     }
 }
