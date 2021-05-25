@@ -1,9 +1,21 @@
-﻿@model IEnumerable<Blessings.ViewModel.DashBoradViewModel>
+﻿
+
+<!--@*@model Invoice.Core.ViewModel.DashboardViewModel
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_adminLayout.cshtml";
+        int i = 1;
+    }
+*@-->
+@model Blessings.ViewModel.DashBoradViewModel
+
 @{
 
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
     int i = 1;
+
+
 }
 
 @*@model Invoice.Core.ViewModel.DashboardViewModel
@@ -11,10 +23,10 @@
         ViewData["Title"] = "Index";
         Layout = "~/Views/Shared/_adminLayout.cshtml";
         int i = 1;
-    }
-*@
+    }*@
+
 <div class="page-wrapper">
-    <!-- Bread crumb -->
+    @*Bread crumb*@
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h3 class="text-primary">Dashboard</h3>
@@ -26,10 +38,10 @@
             </ol>
         </div>
     </div>
-    <!-- End Bread crumb -->
-    <!-- Container fluid  -->
+    @*End Bread crumb
+        Container fluid*@
     <div class="container-fluid">
-        <!-- Start Page Content -->
+        @*Start Page Content*@
         <div class="row">
             <div class="col-md-3">
                 <div class="card p-30">
@@ -38,7 +50,7 @@
                             <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
                         </div>
                         <div class="media-body media-text-right">
-                            @*<h2>@Model.TotalSaleValue</h2>*@
+                            <h2>@Model.TotalAmount</h2>
                             <p class="m-b-0">Total Amount</p>
                         </div>
                     </div>
@@ -48,10 +60,10 @@
                 <div class="card p-30">
                     <div class="media">
                         <div class="media-left meida media-middle">
-                            <span><i class="fa fa-shopping-cart f-s-40 color-danger"></i></span>
+                            <span><i class="fa fa-usd f-s-40 color-danger"></i></span>
                         </div>
                         <div class="media-body media-text-right">
-                            @*<h2>@Model.TotalSales</h2>*@
+                            <h2>@Model.DueAmount</h2>
                             <p class="m-b-0">Total Due</p>
                         </div>
                     </div>
@@ -61,10 +73,10 @@
                 <div class="card p-30">
                     <div class="media">
                         <div class="media-left meida media-middle">
-                            <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
+                            <span><i class="fa fa-user f-s-40 color-warning"></i></span>
                         </div>
                         <div class="media-body media-text-right">
-                            @*<h2>@Model.Products</h2>*@
+                            <h2>@Model.Staffs</h2>
                             <p class="m-b-0">Total Staff</p>
                         </div>
                     </div>
@@ -77,7 +89,7 @@
                             <span><i class="fa fa-user f-s-40 color-danger"></i></span>
                         </div>
                         <div class="media-body media-text-right">
-                            @*    <h2>@Model.Customers</h2>*@
+                            <h2>@Model.Childrens</h2>
                             <p class="m-b-0"> Childrens </p>
                         </div>
                     </div>
@@ -91,12 +103,12 @@
                         <h4>Children List </h4>
                     </div>
 
-                    <!--<div class="card-body">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                    <tr>-->
-                    @* <th>
+                                    <tr>
+                    <th>
                          First Name
                         </th>
                         <th>
@@ -119,35 +131,11 @@
                         </th>
                         <th>
                            Mother LastName
-                        </th>*@
-                    <!--<th>-->
-                    @*     @Html.DisplayNameFor(model => model.ChildFirstName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ChildLastName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ChildBirthdate)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Age)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.FatherFirstName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.FatherLastName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.MotherFirstName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.MotherLastName)
-                                </th>
-                            </tr>
+                        </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.ChildrenList)
                             {
                                 <tr>
                                     <td>
@@ -179,15 +167,16 @@
                                 </tr>
                                 i++;
                             }
-                    *@
 
-                    <!--</tbody>
-                            </table>
-                        </div>
-                    </div>-->
+
+                      </tbody>
+                        </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    </div>
+</div>
+
 

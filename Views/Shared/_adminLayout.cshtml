@@ -29,166 +29,195 @@
     </style>
 </head>
 <body class="fix-header fix-sidebar">
+
     @if (SignInManager.IsSignedIn(User))
     {
-         <div class="preloader">
-              <svg class="circular" viewBox="25 25 50 50">
-                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-                            </svg>
-         </div>
 
-                        <div id="main-wrapper">
-                            <div class="header">
-                                <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                                    <!-- Logo -->
-                                    <div class="navbar-header">
-                                        <a class="navbar-brand" href="@Url.Action("index")">
-                                            <h2><strong>Blessings</strong> </h2>
-                                        </a>
-                                    </div>
-                                    <!-- End Logo -->
-                                    <div class="navbar-collapse">
-                                        <!-- toggle and nav items -->
-                                        <ul class="navbar-nav mr-auto mt-md-0">
+        <div class="preloader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+        </div>
 
-
-                                            <!-- End Messages -->
-                                        </ul>
-                                        <!-- User profile and search -->
-                                        <ul class="navbar-nav my-lg-0">
-                                            <!-- Profile -->
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle text-muted " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello @User.Identity.Name!</a>
-                                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
-                                                    <ul class="dropdown-user">
-                                                        @*<li><a href="#"><i class="ti-settings"></i> Change Password</a></li>*@
-                                                        @*  <li><a asp-area="Indentity" , asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-power-off"></i> Logout</a></li>*@
-                                                        <li class="nav-item">
-                                                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                                                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-
-                            <div class="left-sidebar">
-                                <!-- Sidebar scroll-->
-                                <div class="scroll-sidebar">
-                                    <!-- Sidebar navigation-->
-                                    <nav class="sidebar-nav">
-                                        <ul id="sidebarnav">
-                                            <li class="nav-devider"></li>
-                                            <li class="nav-label">Home</li>
-                                            <li>
-                                                <a class="  " href="@Url.Action("Index", "Home")" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
-                                            </li>
-                                            <li class="nav-label">Features</li>
-                                            <li>
-                                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">My School</span></a>
-                                                <ul aria-expanded="false" class="collapse">
-                                                    <li><a href="@Url.Action("Index", "Children")">Children</a></li>
-                                                    <li><a href="@Url.Action("Index", "Staffs")">Staff</a></li>
-                                                    <li><a href="@Url.Action("Index", "Rooms")">Room</a></li>
-                                                    <li><a href="@Url.Action("Index", "CourseFees")">Course and Fees</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">Student Sign-In </span></a>
-                                                <ul aria-expanded="false" class="collapse">
-                                                    <li><a href="@Url.Action("Index","ChildLogs")">Attendance</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="  " href="@Url.Action("Index", "StaffLogs")" aria-expanded="false"><i class="fa fa-user-times"></i><span class="hide-menu">Staff TimeCard</span></a>
-                                            </li>
-                                            <li>
-                                                <a class="  " href="@Url.Action("Index", "EnrollmentViewModels")" aria-expanded="false"><i class="fa fa-user-times"></i><span class="hide-menu">Enrollment List</span></a>
-                                            </li>
-                                            <li>
-                                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cart-plus"></i><span class="hide-menu">Billing </span></a>
-                                                <ul aria-expanded="false" class="collapse">
-                                                    <li><a href="@Url.Action("Index","PaymentVMs")">Payment List</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">Parent Connection </span></a>
-                                                <ul aria-expanded="false" class="collapse">
-                                                    <li><a href="@Url.Action("Index","ChildActivities")">Child Activity</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="  " href="@Url.Action("Index", "Home")" aria-expanded="false"><i class="fa fa-print"></i><span class="hide-menu"> Reports</span></a>
-                                            </li>
-
-                                            <li><a class="  " asp-area="Indentity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" aria-expanded="false"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
-
-                                        </ul>
-                                    </nav>
-                                    <!-- End Sidebar navigation -->
-                                </div>
-                                <!-- End Sidebar scroll-->
-                            </div>
-
-                            <section class="content">
-                                @RenderBody()
-
-                                <footer class="footer">
-
-                                    <!-- Default to the left -->
-
-                                    <strong>Copyright&copy; 2021 - Blessings - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
-                                </footer>
-                            </section>
-
-                        </div>
+        <div id="main-wrapper">
+            <div class="header">
+                <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                    <!-- Logo -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="@Url.Action("index","Admin")">
+                            <h2><strong>Blessings</strong> </h2>
+                        </a>
+                    </div>
+                    <!-- End Logo -->
+                    <div class="navbar-collapse">
+                        <!-- toggle and nav items -->
+                        <ul class="navbar-nav mr-auto mt-md-0">
 
 
-                        }
-                        else
-                        {
-                        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-                            <div class="container">
-                                <a class="navbar-brand" href="@Url.Action("index")"> <span style="font-weight:600"> </span> <strong>Blessings</strong></a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse" id="navbarResponsive">
-                                   
-                                    <ul class="navbar-nav ml-auto">
-                                     
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                                            </li>
-                                      
-
+                            <!-- End Messages -->
+                        </ul>
+                        <!-- User profile and search -->
+                        <ul class="navbar-nav my-lg-0">
+                            <!-- Profile -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-muted " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello @User.Identity.Name!</a>
+                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                    <ul class="dropdown-user">
+                                        @*<li><a href="#"><i class="ti-settings"></i> Change Password</a></li>*@
+                                        @*  <li><a asp-area="Indentity" , asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-power-off"></i> Logout</a></li>*@
+                                        <li class="nav-item">
+                                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                            </form>
+                                        </li>
                                     </ul>
                                 </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="left-sidebar">
+                <!-- Sidebar scroll-->
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="nav-devider"></li>
+                            <li class="nav-label">Home</li>
+                            <li>
+                                <a class="  " href="@Url.Action("Index", "Admin")" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                            </li>
+                            <li class="nav-label">Features</li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">My School</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="@Url.Action("Index", "Children")">Children</a></li>
+                                    <li><a href="@Url.Action("Index", "Staffs")">Staff</a></li>
+                                    <li><a href="@Url.Action("Index", "Rooms")">Room</a></li>
+                                    <li><a href="@Url.Action("Index", "CourseFees")">Course and Fees</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">Student Sign-In </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="@Url.Action("Index","ChildLogs")">Attendance</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="  " href="@Url.Action("Index", "StaffLogs")" aria-expanded="false"><i class="fa fa-user-times"></i><span class="hide-menu">Staff TimeCard</span></a>
+                            </li>
+                            <li>
+                                <a class="  " href="@Url.Action("Index", "EnrollmentViewModels")" aria-expanded="false"><i class="fa fa-user-times"></i><span class="hide-menu">Enrollment List</span></a>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cart-plus"></i><span class="hide-menu">Billing </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="@Url.Action("Index","PaymentVMs")">Payment List</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">Parent Connection </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="@Url.Action("Index","ChildActivities")">Child Activity</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="  " href="@Url.Action("Index", "ReportsLists")" aria-expanded="false"><i class="fa fa-print"></i><span class="hide-menu"> Reports</span></a>
+
+                            </li>
+
+                            <li><a class="  " asp-area="Indentity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" aria-expanded="false"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
+
+                        </ul>
+
+
+
+                    </nav>
+
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+            </div>
+
+            <section class="content">
+                @RenderBody()
+
+
+                <footer class="footer">
+
+                    <!-- Default to the left -->
+
+                    <strong>Copyright&copy; 2021 - Blessings - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
+                </footer>
+            </section>
+
+        </div>
+
+
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="@Url.Action("index")"> <span style="font-weight:600"> </span> <strong>Blessings</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div></div>
+                            <div class="card body">
+                                <h4 class="media-left meida media-middle"><strong>Welcome to Blessings Child Care</strong></h4>
+                                <div>
+                                    <a href=""><img src="https://www.littlehoney.co.in/wp-content/uploads/2018/08/preschool.jpg" alt=""></a>
+                                </div>
                             </div>
-                        </nav>
-                        }
-@*
+                        </div>
+                    </div>
+                </div>
+
+                <!-- End PAge Content -->
+            </div>
+        </div>
+    }
+    @*
                     </ul>
                 </div>
             </div>
         </nav>*@
-        <div>
-            @RenderBody()
-            <footer class="py-4 bg-black">
-                <div class="container">
-                    <p class="m-0 text-center text-white small">Copyright &copy; 2021 - Blessings</p>
-                </div>
-                <!-- /.container -->
-            </footer>
-        </div>
+    <div>
+        @RenderBody()
+        <footer class="py-4 bg-black">
+            <div class="container">
+                <p class="m-0 text-center text-white small">Copyright &copy; 2021 - Blessings</p>
+            </div>
+            <!-- /.container -->
+        </footer>
+    </div>
 
 
 
@@ -200,67 +229,67 @@
 
 
 
-        <script src="~/AdminEla/Assets/js/lib/jquery/jquery.min.js"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 
 
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="~/AdminEla/Assets/js/lib/bootstrap/js/popper.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/bootstrap/js/bootstrap.min.js"></script>
-        <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="~/AdminEla/Assets/js/jquery.slimscroll.js"></script>
-        <!--Menu sidebar -->
-        <script src="~/AdminEla/Assets/js/sidebarmenu.js"></script>
-        <!--stickey kit -->
-        <script src="~/AdminEla/Assets/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-        <!--Custom JavaScript -->
-        <!-- Amchart -->
-        @*<script src="~/AdminEla/Assets/js/lib/morris-chart/raphael-min.js"></script>
-            <script src="~/AdminEla/Assets/js/lib/morris-chart/morris.js"></script>
-            <script src="~/AdminEla/Assets/js/lib/morris-chart/dashboard1-init.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/AdminEla/Assets/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/AdminEla/Assets/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/AdminEla/Assets/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/AdminEla/Assets/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <!-- Amchart -->
+    @*<script src="~/AdminEla/Assets/js/lib/morris-chart/raphael-min.js"></script>
+        <script src="~/AdminEla/Assets/js/lib/morris-chart/morris.js"></script>
+        <script src="~/AdminEla/Assets/js/lib/morris-chart/dashboard1-init.js"></script>*@
 
 
-        <script src="~/AdminEla/Assets/js/lib/calendar-2/moment.latest.min.js"></script>
-        <!-- scripit init-->
-        <script src="~/AdminEla/Assets/js/lib/calendar-2/semantic.ui.min.js"></script>
-        <!-- scripit init-->
-        <script src="~/AdminEla/Assets/js/lib/calendar-2/prism.min.js"></script>
-        <!-- scripit init-->
-        <script src="~/AdminEla/Assets/js/lib/calendar-2/pignose.calendar.min.js"></script>
-        <!-- scripit init-->
-        <script src="~/AdminEla/Assets/js/lib/calendar-2/pignose.init.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/calendar-2/moment.latest.min.js"></script>
+    <!-- scripit init-->
+    <script src="~/AdminEla/Assets/js/lib/calendar-2/semantic.ui.min.js"></script>
+    <!-- scripit init-->
+    <script src="~/AdminEla/Assets/js/lib/calendar-2/prism.min.js"></script>
+    <!-- scripit init-->
+    <script src="~/AdminEla/Assets/js/lib/calendar-2/pignose.calendar.min.js"></script>
+    <!-- scripit init-->
+    <script src="~/AdminEla/Assets/js/lib/calendar-2/pignose.init.js"></script>
 
-        <script src="~/AdminEla/Assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
-        <script src="~/AdminEla/Assets/js/scripts.js"></script>
-        <!-- scripit init-->
-
-
-
-        <script src="~/AdminEla/Assets/js/lib/datatables/datatables.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-        <script src="~/AdminEla/Assets/js/lib/datatables/datatables-init.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
+    <script src="~/AdminEla/Assets/js/scripts.js"></script>
+    <!-- scripit init-->
 
 
-        <script src="~/AdminEla/Assets/js/custom.min.js"></script>
+
+    <script src="~/AdminEla/Assets/js/lib/datatables/datatables.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="~/AdminEla/Assets/js/lib/datatables/datatables-init.js"></script>
 
 
-        @RenderSection("scripts", required: false)
-        <script type="text/javascript">
-            $(document).ready(function () {
+    <script src="~/AdminEla/Assets/js/custom.min.js"></script>
 
 
-            });
-        </script>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-    </body>
+
+        });
+    </script>
+
+</body>
 </html>

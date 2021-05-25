@@ -6,31 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
-using Blessings.ViewModel;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
-    [Authorize]
-    public class DashBoradViewModelsController : Controller
+    public class ReportsListsController : Controller
     {
         private readonly BlessingsdbContext _context;
 
-        public DashBoradViewModelsController(BlessingsdbContext context)
+        public ReportsListsController(BlessingsdbContext context)
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-       /* // GET: DashBoradViewModels
+
+        // GET: ReportsLists
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DashBoradViewModel.ToListAsync());
-        }*/
+            return View(await _context.ReportsList.ToListAsync());
+        }
 
-        // GET: DashBoradViewModels/Details/5
+        // GET: ReportsLists/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,39 +32,39 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var dashBoradViewModel = await _context.DashBoradViewModel
-                .FirstOrDefaultAsync(m => m.dashboardvmId == id);
-            if (dashBoradViewModel == null)
+            var reportsList = await _context.ReportsList
+                .FirstOrDefaultAsync(m => m.ReportListId == id);
+            if (reportsList == null)
             {
                 return NotFound();
             }
 
-            return View(dashBoradViewModel);
+            return View(reportsList);
         }
 
-        // GET: DashBoradViewModels/Create
+        // GET: ReportsLists/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: DashBoradViewModels/Create
+        // POST: ReportsLists/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("dashboardvmId,Childrens,Staffs,TotalAmount,DueAmount")] DashBoradViewModel dashBoradViewModel)
+        public async Task<IActionResult> Create([Bind("ReportListId")] ReportsList reportsList)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dashBoradViewModel);
+                _context.Add(reportsList);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(dashBoradViewModel);
+            return View(reportsList);
         }
 
-        // GET: DashBoradViewModels/Edit/5
+        // GET: ReportsLists/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,22 +72,22 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var dashBoradViewModel = await _context.DashBoradViewModel.FindAsync(id);
-            if (dashBoradViewModel == null)
+            var reportsList = await _context.ReportsList.FindAsync(id);
+            if (reportsList == null)
             {
                 return NotFound();
             }
-            return View(dashBoradViewModel);
+            return View(reportsList);
         }
 
-        // POST: DashBoradViewModels/Edit/5
+        // POST: ReportsLists/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("dashboardvmId,Childrens,Staffs,TotalAmount,DueAmount")] DashBoradViewModel dashBoradViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ReportListId")] ReportsList reportsList)
         {
-            if (id != dashBoradViewModel.dashboardvmId)
+            if (id != reportsList.ReportListId)
             {
                 return NotFound();
             }
@@ -102,12 +96,12 @@ namespace Blessings.Controllers
             {
                 try
                 {
-                    _context.Update(dashBoradViewModel);
+                    _context.Update(reportsList);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DashBoradViewModelExists(dashBoradViewModel.dashboardvmId))
+                    if (!ReportsListExists(reportsList.ReportListId))
                     {
                         return NotFound();
                     }
@@ -118,10 +112,10 @@ namespace Blessings.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(dashBoradViewModel);
+            return View(reportsList);
         }
 
-        // GET: DashBoradViewModels/Delete/5
+        // GET: ReportsLists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,30 +123,30 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var dashBoradViewModel = await _context.DashBoradViewModel
-                .FirstOrDefaultAsync(m => m.dashboardvmId == id);
-            if (dashBoradViewModel == null)
+            var reportsList = await _context.ReportsList
+                .FirstOrDefaultAsync(m => m.ReportListId == id);
+            if (reportsList == null)
             {
                 return NotFound();
             }
 
-            return View(dashBoradViewModel);
+            return View(reportsList);
         }
 
-        // POST: DashBoradViewModels/Delete/5
+        // POST: ReportsLists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dashBoradViewModel = await _context.DashBoradViewModel.FindAsync(id);
-            _context.DashBoradViewModel.Remove(dashBoradViewModel);
+            var reportsList = await _context.ReportsList.FindAsync(id);
+            _context.ReportsList.Remove(reportsList);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DashBoradViewModelExists(int id)
+        private bool ReportsListExists(int id)
         {
-            return _context.DashBoradViewModel.Any(e => e.dashboardvmId == id);
+            return _context.ReportsList.Any(e => e.ReportListId == id);
         }
     }
 }

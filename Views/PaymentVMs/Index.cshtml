@@ -20,7 +20,7 @@
                     </form>
 
                     <div class="card-body">
-                        <h4 class="card-title">Enrollment List</h4>
+                        <h4 class="card-title">Payment List</h4>
                         <div class="table-responsive m-t-40">
                             <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
@@ -54,7 +54,7 @@
                                             @Html.DisplayNameFor(model => model.Status)
                                         </th>
 
-                                        <th></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,15 +95,15 @@
                                                 }
                                                 @if (item.Status == "Paid")
                                                 {
-                                            <label class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</label>
+                                                     <label class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</label>
 
                                                 }
                                             </td>
-
+@*
                                             <td>
                                                 <a asp-action="Delete" asp-route-id="@item.PaymentListId" class="btn btn-icon btn-danger btn-xs m-b-5">
                                                     <i class="fa fa-remove"></i>Delete</a>
-                                            </td>
+                                            </td>*@
                                         </tr>
                                     }
                                 </tbody>
@@ -155,7 +155,7 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
          
-            <th></th>
+        
         </tr>
     </thead>
     <tbody>

@@ -51,7 +51,7 @@ namespace Blessings.Controllers
         public IActionResult Create(int ChildId)
         {
             var children = from c in _context.Child where c.ChildId == ChildId select c; 
-            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildFirstName");
             ViewData["Course"] = new SelectList(_context.CourseFees, "Course", "Course");
            
             return View();
@@ -68,11 +68,7 @@ namespace Blessings.Controllers
            /* var children = from c in _context.Child where c.ChildId == enrollment.ChildId select c;
             ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");*/
 
-            if (enrollment.EnrollmentDate < DateTime.Today)
-            {
-                ViewBag.Message = "Please choose future Date";
-                return View(enrollment);
-            }
+          
             if (ModelState.IsValid)
             {
                     _context.Add(enrollment);
@@ -99,7 +95,7 @@ namespace Blessings.Controllers
             {
                 return NotFound();
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildLastName");
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName");
             return View(enrollment);
         }
 
@@ -108,7 +104,7 @@ namespace Blessings.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentId,Course,RoomNo,EnrollmentDate,ChildId")] Enrollment enrollment)
+        public async Task<IActionResult> Edit(int id, [Bind("EnrollmentId,Course,RoomNo,EnrollmentDate,EnrollmentEndDate,ChildId")] Enrollment enrollment)
         {
             if (id != enrollment.EnrollmentId)
             {
@@ -119,11 +115,10 @@ namespace Blessings.Controllers
             {
                 try
                 {
-                   
+                    
                         _context.Update(enrollment);
                         await _context.SaveChangesAsync();
-                    
-                }
+                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!EnrollmentExists(enrollment.EnrollmentId))

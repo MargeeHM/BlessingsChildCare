@@ -4,14 +4,16 @@ using Blessings.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blessings.Migrations
 {
     [DbContext(typeof(BlessingsdbContext))]
-    partial class BlessingsdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210521045814_updateEnrollment")]
+    partial class updateEnrollment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -433,18 +435,6 @@ namespace Blessings.Migrations
                     b.ToTable("ProjectRole");
                 });
 
-            modelBuilder.Entity("Blessings.Models.ReportsList", b =>
-                {
-                    b.Property<int>("ReportListId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("ReportListId");
-
-                    b.ToTable("ReportsList");
-                });
-
             modelBuilder.Entity("Blessings.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")
@@ -619,9 +609,6 @@ namespace Blessings.Migrations
                     b.Property<DateTime>("EnrollmentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("EnrollmentEndDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("EnrollmentId")
                         .HasColumnType("int");
 
@@ -691,33 +678,6 @@ namespace Blessings.Migrations
                     b.HasKey("PaymentListId");
 
                     b.ToTable("PaymentVM");
-                });
-
-            modelBuilder.Entity("Blessings.ViewModel.Sign_InOutChildrenVM", b =>
-                {
-                    b.Property<int>("ChildlogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<TimeSpan>("CheckIn")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("CheckOut")
-                        .HasColumnType("time");
-
-                    b.Property<string>("ChildFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ChildId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Day")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ChildlogId");
-
-                    b.ToTable("Sign_InOutChildrenVM");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blessings.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -39,7 +40,11 @@ namespace Blessings.ViewModel
         [DataType(DataType.Date)]
         public DateTime EnrollmentDate { get; set; }
 
-       
+        [Display(Name = "Enrollment End Date")]
+        [DataType(DataType.Date)]
+        public DateTime? EnrollmentEndDate { get; set; }
+
+    
         public int? ChildId { get; set; }
     }
 }

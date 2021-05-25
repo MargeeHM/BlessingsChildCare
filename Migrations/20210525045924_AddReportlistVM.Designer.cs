@@ -4,14 +4,16 @@ using Blessings.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blessings.Migrations
 {
     [DbContext(typeof(BlessingsdbContext))]
-    partial class BlessingsdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210525045924_AddReportlistVM")]
+    partial class AddReportlistVM
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -705,9 +707,6 @@ namespace Blessings.Migrations
 
                     b.Property<TimeSpan>("CheckOut")
                         .HasColumnType("time");
-
-                    b.Property<string>("ChildFirstName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ChildId")
                         .HasColumnType("int");
