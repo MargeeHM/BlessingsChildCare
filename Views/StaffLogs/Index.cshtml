@@ -50,10 +50,25 @@
                                                 @Html.DisplayFor(modelItem => item.Day)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.StaffCheckIn)
+                                                @if (item.StaffCheckIn != null)
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.StaffCheckIn)
+                                                }
+                                                else
+                                                {
+                                                    <label class="label btn-danger">Absent</label>
+                                                }
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.StaffCheckOut)
+                                                @if (item.StaffCheckOut != null)
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.StaffCheckOut)
+                                                }
+                                                else
+                                                {
+                                                    <label class="label btn-danger">Absent</label>
+                                                }
+
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Staff.City)

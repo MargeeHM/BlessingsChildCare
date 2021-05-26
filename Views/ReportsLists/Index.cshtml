@@ -11,13 +11,24 @@
         <div class="row">
             <div class="col-12">
                 <div class="card horizontal">
-                    <a><i class="fa fa-user-times"></i> <strong>sign In-out Children Reports</strong></a>
+                    <a><i class="fa fa-user-times"></i> <strong>Sign In-out Reports</strong></a>
                     <div class="container-fluid">
                         <div class="card">
                             <a href="@Url.Action("Index", "Sign_InOutChildren")">Children Attendance Report</a></>
                         </div>
                         <div class="card">
                             <a href="@Url.Action("Absentlist", "Sign_InOutChildren")">Children Absent Report</a></>
+                        </div>
+                    </div>
+                </div>
+                <div class="card horizontal">
+                    <a><i class="fa fa-user-times"></i> <strong>Sign In-out Reports</strong></a>
+                    <div class="container-fluid">
+                        <div class="card">
+                            <a href="@Url.Action("StaffAttendance", "StaffIn_OutVM")">Staff Attendance Report</a></>
+                        </div>
+                        <div class="card">
+                            <a href="@Url.Action("StaffAbsentlist", "StaffIn_OutVM")">Staff Absent Report</a></>
                         </div>
 
                     </div>

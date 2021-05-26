@@ -30,6 +30,14 @@
     <Compile Remove="Migrations\20210516000759_addpaymaneVmAgain.Designer.cs" />
     <Compile Remove="Migrations\20210516061539_updateprojectrole.cs" />
     <Compile Remove="Migrations\20210516061539_updateprojectrole.Designer.cs" />
+    <Compile Remove="Migrations\20210526183927_AddStaffsignInOutVM.cs" />
+    <Compile Remove="Migrations\20210526183927_AddStaffsignInOutVM.Designer.cs" />
+    <Compile Remove="Migrations\20210526184709_AddVMS.cs" />
+    <Compile Remove="Migrations\20210526184709_AddVMS.Designer.cs" />
+    <Compile Remove="Migrations\20210526185417_AddVMS.cs" />
+    <Compile Remove="Migrations\20210526185417_AddVMS.Designer.cs" />
+    <Compile Remove="Migrations\20210526185839_AddChildActivityVMStaffInOutVM.cs" />
+    <Compile Remove="Migrations\20210526185839_AddChildActivityVMStaffInOutVM.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

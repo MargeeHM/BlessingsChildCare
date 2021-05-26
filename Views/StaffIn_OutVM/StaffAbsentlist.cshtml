@@ -1,8 +1,8 @@
-﻿@model IEnumerable<Blessings.ViewModel.Sign_InOutChildrenVM>
+﻿@model IEnumerable<Blessings.ViewModel.StaffInOutVM>
 
 
 @{
-    ViewData["Title"] = "AbsentList";
+    ViewData["Title"] = "StaffAbsentlist";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 
 
@@ -36,7 +36,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form asp-controller="Sign_InOutChildren" asp-action="Absentlist" method="get">
+                <form asp-controller="StaffIn_OutVM" asp-action="StaffAbsentlist" method="get">
                     <div class="row">
 
 
@@ -75,13 +75,13 @@
                                             @Html.DisplayNameFor(model => model.Day)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.CheckIn)
+                                            @Html.DisplayNameFor(model => model.StaffCheckIn)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.CheckOut)
+                                            @Html.DisplayNameFor(model => model.StaffCheckOut)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.ChildFirstName)
+                                            @Html.DisplayNameFor(model => model.StaffFirstName)
                                         </th>
 
                                     </tr>
@@ -89,36 +89,38 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Day)
-                                        </td>
-                                        <td>
-                                            @if (item.CheckIn != null)
-                                            {
-                                                @Html.DisplayFor(modelItem => item.CheckIn)
-                                            }
-                                            else
-                                            {
-                                                <label class="label btn-danger">Absent</label>
-                                            }
-                                        </td>
-                                        <td>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Day)
+                                            </td>
+                                            <td>
+                                                @if (item.StaffCheckIn != null)
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.StaffCheckIn)
+                                                }
+                                                else
+                                                {
+                                                    <label class="label btn-danger">Absent</label>
+                                                }
 
-                                            @if (item.CheckOut != null)
-                                            {
-                                                @Html.DisplayFor(modelItem => item.CheckOut)
-                                            }
-                                            else
-                                            {
-                                                <label class="label btn-danger">Absent</label>
-                                            }
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ChildFirstName)
-                                        </td>
+                                            </td>
+                                            <td>
+                                                @if (item.StaffCheckOut != null)
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.StaffCheckOut)
+                                                }
+                                                else
+                                                {
+                                                    <label class="label btn-danger">Absent</label>
+                                                }
 
-                                    </tr>
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.StaffFirstName)
+                                            </td>
+
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -150,6 +152,5 @@
         });
     </script>
 }
-
 
 
