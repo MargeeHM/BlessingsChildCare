@@ -2,7 +2,7 @@
 
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "AbsentList";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 
 
@@ -36,7 +36,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form asp-controller="Sign_InOutChildren" asp-action="Index" method="get">
+                <form asp-controller="Sign_InOutChildren" asp-action="Absentlist" method="get">
                     <div class="row">
 
 
@@ -59,7 +59,7 @@
                             <input type="submit" id="getReports" style="margin-top: 10px" id="btnSubmit" value="Get Reports" class="btn btn-success" />
                         </div>
 
-                     </div>
+                    </div>
 
                 </form>
 
@@ -89,22 +89,36 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Day)
-                                            </td>
-                                            <td>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Day)
+                                        </td>
+                                        <td>
+                                            @if (item.CheckIn != null)
+                                            {
                                                 @Html.DisplayFor(modelItem => item.CheckIn)
-                                            </td>
-                                            <td>
+                                            }
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
+                                            }
+                                        </td>
+                                        <td>
+
+                                            @if (item.CheckIn != null)
+                                            {
                                                 @Html.DisplayFor(modelItem => item.CheckOut)
-                                            </td>
+                                            }
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ChildFirstName)
+                                        </td>
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ChildFirstName)
-                                            </td>
-
-                                        </tr>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -139,59 +153,3 @@
 
 
 
-
-
-
-
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ChildlogId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Day)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CheckIn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CheckOut)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ChildId)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ChildlogId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Day)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CheckIn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CheckOut)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ChildId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.InOutchildId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.InOutchildId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.InOutchildId">Delete</a>
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>
-*@

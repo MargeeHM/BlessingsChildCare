@@ -30,18 +30,36 @@ namespace Blessings.Controllers
                                 Day = cl.Day,
                                 CheckIn = cl.CheckIn,
                                 CheckOut = cl.CheckOut,
-                                ChildFirstName = c.ChildFirstName,
-
+                                ChildFirstName = c.ChildFirstName, 
                             };
 
-            if (from != null && to !=null)
+            if (from != null && to != null)
             {
-                dbContext = dbContext.Where(cl => cl.Day >= from && cl.Day <= to);
+                dbContext = dbContext.Where(cl => cl.Day >= from && cl.Day <= to && cl.CheckIn != null && cl.CheckOut != null);
             }
 
             return View(await dbContext.ToListAsync());
         }
 
-       
+        public async Task<IActionResult> Absentlist(DateTime from, DateTime to)
+        {
+            var dbContext = from c in _context.Child
+                            join cl in _context.ChildLog on c.ChildId equals cl.ChildId
+                            select new Sign_InOutChildrenVM
+                            {
+                                Day = cl.Day,
+                                CheckIn = cl.CheckIn,
+                                CheckOut = cl.CheckOut,
+                                ChildFirstName = c.ChildFirstName,
+                            };
+
+            if (from != null && to != null)
+            {
+                dbContext = dbContext.Where(cl => cl.Day >= from && cl.Day <= to && cl.CheckIn == null && cl.CheckOut == null) ;
+            }
+
+            return View(await dbContext.ToListAsync());
+        }
+
     }
 }

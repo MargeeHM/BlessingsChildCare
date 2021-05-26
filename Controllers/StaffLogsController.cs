@@ -87,7 +87,7 @@ namespace Blessings.Controllers
             {
                 return NotFound();
             }
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "City", staffLog.StaffId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "StaffFirstName", staffLog.StaffId);
             return View(staffLog);
         }
 
@@ -123,7 +123,7 @@ namespace Blessings.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "City", staffLog.StaffId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "StaffFirstName", staffLog.StaffId);
             return View(staffLog);
         }
 

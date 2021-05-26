@@ -63,6 +63,8 @@ namespace Blessings.Controllers
         {
             if (ModelState.IsValid)
             {
+           /*     ChildLog cl = new ChildLog();
+                cl.IsAbsent = childLog.IsAbsent;*/
                 _context.Add(childLog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -45,31 +45,47 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Day)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CheckIn)
-                                            </td>
-                                            <td>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Day)
+                                        </td>
+                                   
+                                        <td>
+                                            @if (item.CheckIn != null)
+                                            {
+                                                 @Html.DisplayFor(modelItem => item.CheckIn)
+                                            }
+                                            else 
+                                            { 
+                                                <label class="label btn-danger">Absent</label>                                             
+                                            }
+                                        </td>
+                                        <td>
+
+                                            @if (item.CheckIn != null)
+                                            {
                                                 @Html.DisplayFor(modelItem => item.CheckOut)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
-                                            </td>
-                                            <td>
-                                                <a asp-action="Edit" asp-route-id="@item.ChildlogId" class="btn btn-icon btn-warning btn-xs m-b-5">
-                                                    <i class="fa fa-edit"></i>Edit
-                                                </a> |
-                                                <a asp-action="Details" asp-route-id="@item.ChildlogId" class="btn btn-icon btn-success btn-xs m-b-5">
-                                                    <i class="fa fa-edit"></i>Details
-                                                </a> |
-                                                <a asp-action="Delete" asp-route-id="@item.ChildlogId" class="btn btn-icon btn-danger btn-xs m-b-5">
-                                                    <i class="fa fa-remove"></i>Delete
-                                                </a>
-                                            </td>
-                                        </tr>
+                                            }
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ChildlogId" class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                <i class="fa fa-edit"></i>Edit
+                                            </a> |
+                                            <a asp-action="Details" asp-route-id="@item.ChildlogId" class="btn btn-icon btn-success btn-xs m-b-5">
+                                                <i class="fa fa-edit"></i>Details
+                                            </a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ChildlogId" class="btn btn-icon btn-danger btn-xs m-b-5">
+                                                <i class="fa fa-remove"></i>Delete
+                                            </a>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

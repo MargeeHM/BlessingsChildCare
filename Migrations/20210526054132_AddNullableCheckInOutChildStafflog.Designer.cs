@@ -4,14 +4,16 @@ using Blessings.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blessings.Migrations
 {
     [DbContext(typeof(BlessingsdbContext))]
-    partial class BlessingsdbContextModelSnapshot : ModelSnapshot
+    [Migration("20210526054132_AddNullableCheckInOutChildStafflog")]
+    partial class AddNullableCheckInOutChildStafflog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,6 +168,9 @@ namespace Blessings.Migrations
 
                     b.Property<DateTime>("Day")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsAbsent")
+                        .HasColumnType("bit");
 
                     b.HasKey("ChildlogId");
 
@@ -553,6 +558,9 @@ namespace Blessings.Migrations
                     b.Property<DateTime>("Day")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool?>("IsAbsent")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("StaffCheckIn")
                         .HasColumnType("datetime2");
 
@@ -700,11 +708,11 @@ namespace Blessings.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("CheckIn")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("CheckIn")
+                        .HasColumnType("time");
 
-                    b.Property<DateTime?>("CheckOut")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("CheckOut")
+                        .HasColumnType("time");
 
                     b.Property<string>("ChildFirstName")
                         .HasColumnType("nvarchar(max)");

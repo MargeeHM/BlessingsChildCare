@@ -15,9 +15,9 @@ namespace Blessings.ViewModel
         [DataType(DataType.Date)]
         public DateTime Day { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan CheckIn { get; set; }
+        public DateTime? CheckIn { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan CheckOut { get; set; }
+        public DateTime? CheckOut { get; set; }
 
         [Display(Name = "Child name")]
         public string ChildFirstName { get; set; }

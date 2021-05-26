@@ -15,10 +15,11 @@ namespace Blessings.Models
         [DataType(DataType.Date)]
         public DateTime Day { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan CheckIn { get; set; }
+        public DateTime? CheckIn { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan CheckOut { get; set; }
+        public DateTime? CheckOut { get; set; }
 
+       
         public int ChildId { get; set; }
 
         [ForeignKey(nameof(ChildId))]
