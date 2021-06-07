@@ -24,11 +24,11 @@ namespace Blessings.Controllers
         public async Task<IActionResult> Index(DateTime day, string room)
         {
 
-            var dbContext = from s in _context.Staff
-                            join sl in _context.StaffLog on s.StaffId equals sl.StaffId
+            var dbContext = from c in _context.Child
+                            join ca in _context.ChildActivity on c.ChildId equals ca.ChildId
                             select new ChildActivitiesVM
                             {
-                               
+                                  
                             };
 
           /*  if (day != null && to != null)
