@@ -12,8 +12,6 @@ namespace Blessings.Controllers
 {
     public class StaffIn_OutVMController : Controller
     {
-
-
         private readonly BlessingsdbContext _context;
 
         public StaffIn_OutVMController(BlessingsdbContext context)

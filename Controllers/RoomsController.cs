@@ -22,9 +22,16 @@ namespace Blessings.Controllers
         }
 
         // GET: Rooms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Room.ToListAsync());
+            var result = from r in _context.Room select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(r => r.RoomNo.Contains(searchString)
+                 || r.Course.Contains(searchString));
+            }
+            return View(await result.ToListAsync());
         }
 
         // GET: Rooms/Details/5

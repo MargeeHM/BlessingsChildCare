@@ -22,9 +22,16 @@ namespace Blessings.Controllers
         }
 
         // GET: CourseFees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.CourseFees.ToListAsync());
+            var result = from cf in _context.CourseFees select cf;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(cf => cf.Course.Contains(searchString)
+                 || cf.Fee.ToString().Contains(searchString));
+            }
+            return View(await result.ToListAsync());
         }
 
         // GET: CourseFees/Details/5

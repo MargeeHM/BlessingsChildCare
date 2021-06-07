@@ -23,9 +23,23 @@ namespace Blessings.Controllers
         }
 
         // GET: Staffs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Staff.ToListAsync());
+            var result = from s in _context.Staff select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(s => s.StaffFirstName.Contains(searchString)
+                 || s.StaffLastName.Contains(searchString)
+                 || s.Room.Contains(searchString)
+                 || s.Street.Contains(searchString)
+                 || s.City.Contains(searchString)
+                 || s.State.Contains(searchString)
+                 || s.Zipcode.Contains(searchString)
+                 || s.Email.Contains(searchString)
+                 || s.Phone.Contains(searchString));
+            }
+            return View(await result.ToListAsync());
         }
 
         // GET: Staffs/Details/5

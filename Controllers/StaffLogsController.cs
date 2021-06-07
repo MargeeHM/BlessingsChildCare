@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
 using Microsoft.AspNetCore.Authorization;
+using Blessings.ViewModel;
 
 namespace Blessings.Controllers
 {
@@ -22,8 +23,30 @@ namespace Blessings.Controllers
         }
 
         // GET: StaffLogs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            /*         var result = from sl in _context.StaffLog
+                                  join s in _context.Staff on sl.StaffId equals s.StaffId
+                                  select new StaffLog {
+                                      StaffId = sl.StaffId,
+                                      Day = sl.Day,
+                                      StaffCheckIn = sl.StaffCheckIn,
+                                      StaffCheckOut = sl.StaffCheckOut,
+                                      StafflogId = sl.StafflogId,
+
+                                  };
+
+                     if (!String.IsNullOrEmpty(searchString))
+                     {
+
+                         result = result.Where(sl => *//*sl.StaffFirstName.Contains(searchString)
+                         ||*//* sl.Day.ToString().Contains(searchString)
+                         || sl.StaffCheckIn.ToString().Contains(searchString)
+                         || sl.StaffCheckOut.ToString().Contains(searchString));
+                     }
+
+                     return View(await result.ToListAsync());
+         */
             var blessingsdbContext = _context.StaffLog.Include(s => s.Staff);
             return View(await blessingsdbContext.ToListAsync());
         }

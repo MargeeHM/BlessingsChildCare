@@ -20,8 +20,10 @@ namespace Blessings.ViewModel
         public string ImageName { get; set; }
         [Display(Name = "Child name")]
         public string ChildFirstName { get; set; }
-        public int ChildId { get; set; }
 
+        public string Room { get; set; }
+        public int? ChildId { get; set; }
 
+        public int? EnrollmentId { get; set; }
     }
 }
