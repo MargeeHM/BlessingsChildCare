@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,9 +20,16 @@ namespace Blessings.ViewModel
         [Display(Name ="Image Name")]
         public string ImageName { get; set; }
         [Display(Name = "Child name")]
+
         public string ChildFirstName { get; set; }
 
-        public string Room { get; set; }
+        [Display(Name = "Image")]
+        public IFormFile? ActivityImage { get; set; }
+
+
+        [Display(Name = "Room")]
+       
+        public string RoomNo { get; set; }
         public int? ChildId { get; set; }
 
         public int? EnrollmentId { get; set; }

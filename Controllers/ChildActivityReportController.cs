@@ -2,6 +2,7 @@
 using Blessings.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,20 +22,26 @@ namespace Blessings.Controllers
         }
 
         // GET: ChildActivityReportController
-        public async Task<IActionResult> Index(DateTime day, string room)
+        public async Task<IActionResult> Index(DateTime from, DateTime to)
         {
+            
+                  
 
             var dbContext = from c in _context.Child
                             join ca in _context.ChildActivity on c.ChildId equals ca.ChildId
                             select new ChildActivitiesVM
                             {
-                                  
+                                ActivityName = ca.ActivityName,
+                                Activitytime = ca.Activitytime,
+                                ActivityImage = ca.ActivityImage,
+                                ChildFirstName = c.ChildFirstName
+                                
                             };
 
-          /*  if (day != null && to != null)
+            if (from != null && to != null)
             {
-                dbContext = dbContext.Where(sl => sl.Day >= from && sl.Day <= to && sl.StaffCheckIn != null && sl.StaffCheckOut != null);
-            }*/
+                dbContext = dbContext.Where(ca => ca.Activitytime >= from && ca.Activitytime <= to);
+            }
 
             return View(await dbContext.ToListAsync());
         }
