@@ -5,6 +5,7 @@
     Blessings.Models.Enrollment enrollmentModel = null;
     Blessings.Models.Emergency emergencyModel = null;
     Blessings.Models.Medical medicalModel = null;
+    Blessings.Models.AuthorizedPickup authorizedPickupModel = null;
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 
 }
@@ -117,7 +118,7 @@
                                         <div class="card-body">
                                             <h4 class="card-title">Enrollment Info</h4>
                                             <div class="table-responsive m-t-40">
-                                                <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>
@@ -174,13 +175,78 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="form-group">
+                                            <a value="Create" href="@Url.Action("Create", "AuthorizedPickups", new { ChildId = Model.ChildId } )" class="btn btn-success"> Add Pickup </a>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h4 class="card-title">Authorized Pickup Info</h4>
+                                            <div class="table-responsive m-t-40">
+                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => authorizedPickupModel.PersonName)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => authorizedPickupModel.Relation)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => authorizedPickupModel.phone)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => authorizedPickupModel.Child)
+                                                            </th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.AuthorizedPickup)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.PersonName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Relation)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.phone)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                                                </td>
+                                                                <td>
+                                                                    <a asp-action="Edit" asp-route-id="@item.AuthorizedPickupId" asp-controller="AuthorizedPickups" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
+                                                                    <a asp-action="Delete" asp-route-id="@item.AuthorizedPickupId" asp-controller="AuthorizedPickups" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End PAge Content -->
+                        </div>
+
+
+
+
+                        <div class="container-fluid">
+                            <!-- Start Page Content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="form-group">
                                             <a value="Create" href="@Url.Action("Create", "Emergencies", new { ChildId = Model.ChildId } )" class="btn btn-success"> Add Emergency Contact info </a>
                                         </div>
 
                                         <div class="card-body">
                                             <h4 class="card-title">Emergency Contact Info</h4>
                                             <div class="table-responsive m-t-40">
-                                                <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>
@@ -221,8 +287,8 @@
                                                                     @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
                                                                 </td>
                                                                 <td>
-                                                                    <a  asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a> 
-                                                                    <a  asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                                    <a asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
+                                                                    <a asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
                                                                 </td>
                                                             </tr>
                                                         }
@@ -248,7 +314,7 @@
                                         <div class="card-body">
                                             <h4 class="card-title">Medical Info</h4>
                                             <div class="table-responsive m-t-40">
-                                                <table  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>
@@ -319,8 +385,8 @@
                                                                     @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
                                                                 </td>
                                                                 <td>
-                                                                    <a  asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a> 
-                                                                    <a  asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                                    <a asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
+                                                                    <a asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
                                                                 </td>
                                                             </tr>
                                                         }

@@ -6,29 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blessings.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Blessings.Controllers
 {
-    /*[Authorize(Roles = "Administrator")]*/
-    [Authorize]
-    public class MedicalsController : Controller
+    public class AuthorizedPickupsController : Controller
     {
         private readonly BlessingsdbContext _context;
 
-        public MedicalsController(BlessingsdbContext context)
+        public AuthorizedPickupsController(BlessingsdbContext context)
         {
             _context = context;
         }
 
-        // GET: Medicals
+        // GET: AuthorizedPickups
         public async Task<IActionResult> Index()
         {
-            var blessingsdbContext = _context.Medical.Include(m => m.Child);
+            var blessingsdbContext = _context.AuthorizedPickup.Include(a => a.Child);
             return View(await blessingsdbContext.ToListAsync());
         }
 
-        // GET: Medicals/Details/5
+        // GET: AuthorizedPickups/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,18 +33,18 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var medical = await _context.Medical
-                .Include(m => m.Child)
-                .FirstOrDefaultAsync(m => m.MedicalId == id);
-            if (medical == null)
+            var authorizedPickup = await _context.AuthorizedPickup
+                .Include(a => a.Child)
+                .FirstOrDefaultAsync(m => m.AuthorizedPickupId == id);
+            if (authorizedPickup == null)
             {
                 return NotFound();
             }
 
-            return View(medical);
+            return View(authorizedPickup);
         }
 
-        // GET: Medicals/Create
+        // GET: AuthorizedPickups/Create
         public IActionResult Create(int ChildId)
         {
             var children = from c in _context.Child where c.ChildId == ChildId select c;
@@ -55,24 +52,24 @@ namespace Blessings.Controllers
             return View();
         }
 
-        // POST: Medicals/Create
+        // POST: AuthorizedPickups/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MedicalId,PersonToContactFirstName,PersonToContactLastName,PersonToContactPhone,ChildsDoctorFirstName,ChildsDoctorLastName,ChildsDoctorPhone,RegularlyUsedHospitalName,DiaetryRestriction,MedicalIssue,ChildId")] Medical medical)
+        public async Task<IActionResult> Create([Bind("AuthorizedPickupId,PersonName,Relation,phone,ChildId")] AuthorizedPickup authorizedPickup)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(medical);
+                _context.Add(authorizedPickup);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Children", new { id = medical.ChildId });
+                return RedirectToAction("Details", "Children", new { id = authorizedPickup.ChildId });
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", medical.ChildId);
-            return View(medical);
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", authorizedPickup.ChildId);
+            return View(authorizedPickup);
         }
 
-        // GET: Medicals/Edit/5
+        // GET: AuthorizedPickups/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,23 +77,23 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var medical = await _context.Medical.FindAsync(id);
-            if (medical == null)
+            var authorizedPickup = await _context.AuthorizedPickup.FindAsync(id);
+            if (authorizedPickup == null)
             {
                 return NotFound();
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", medical.ChildId);
-            return View(medical);
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", authorizedPickup.ChildId);
+            return View(authorizedPickup);
         }
 
-        // POST: Medicals/Edit/5
+        // POST: AuthorizedPickups/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicalId,PersonToContactFirstName,PersonToContactLastName,PersonToContactPhone,ChildsDoctorFirstName,ChildsDoctorLastName,ChildsDoctorPhone,RegularlyUsedHospitalName,DiaetryRestriction,MedicalIssue,ChildId")] Medical medical)
+        public async Task<IActionResult> Edit(int id, [Bind("AuthorizedPickupId,PersonName,Relation,phone,ChildId")] AuthorizedPickup authorizedPickup)
         {
-            if (id != medical.MedicalId)
+            if (id != authorizedPickup.AuthorizedPickupId)
             {
                 return NotFound();
             }
@@ -105,12 +102,12 @@ namespace Blessings.Controllers
             {
                 try
                 {
-                    _context.Update(medical);
+                    _context.Update(authorizedPickup);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicalExists(medical.MedicalId))
+                    if (!AuthorizedPickupExists(authorizedPickup.AuthorizedPickupId))
                     {
                         return NotFound();
                     }
@@ -119,13 +116,13 @@ namespace Blessings.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Details", "Children", new { id = medical.ChildId });
+                return RedirectToAction("Details", "Children", new { id = authorizedPickup.ChildId });
             }
-            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", medical.ChildId);
-            return View(medical);
+            ViewData["ChildId"] = new SelectList(_context.Child, "ChildId", "ChildFirstName", authorizedPickup.ChildId);
+            return View(authorizedPickup);
         }
 
-        // GET: Medicals/Delete/5
+        // GET: AuthorizedPickups/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,31 +130,31 @@ namespace Blessings.Controllers
                 return NotFound();
             }
 
-            var medical = await _context.Medical
-                .Include(m => m.Child)
-                .FirstOrDefaultAsync(m => m.MedicalId == id);
-            if (medical == null)
+            var authorizedPickup = await _context.AuthorizedPickup
+                .Include(a => a.Child)
+                .FirstOrDefaultAsync(m => m.AuthorizedPickupId == id);
+            if (authorizedPickup == null)
             {
                 return NotFound();
             }
 
-            return View(medical);
+            return View(authorizedPickup);
         }
 
-        // POST: Medicals/Delete/5
+        // POST: AuthorizedPickups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var medical = await _context.Medical.FindAsync(id);
-            _context.Medical.Remove(medical);
+            var authorizedPickup = await _context.AuthorizedPickup.FindAsync(id);
+            _context.AuthorizedPickup.Remove(authorizedPickup);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details", "Children", new { id = medical.ChildId });
+            return RedirectToAction("Details", "Children", new { id = authorizedPickup.ChildId });
         }
 
-        private bool MedicalExists(int id)
+        private bool AuthorizedPickupExists(int id)
         {
-            return _context.Medical.Any(e => e.MedicalId == id);
+            return _context.AuthorizedPickup.Any(e => e.AuthorizedPickupId == id);
         }
     }
 }

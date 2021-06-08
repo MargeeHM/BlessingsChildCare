@@ -178,5 +178,7 @@ namespace Blessings.Models
         public DbSet<Blessings.ViewModel.Sign_InOutChildrenVM> Sign_InOutChildrenVM { get; set; }
 
         public DbSet<Blessings.Models.ReportsList> ReportsList { get; set; }
+
+        public DbSet<Blessings.Models.AuthorizedPickup> AuthorizedPickup { get; set; }
     }
 }
