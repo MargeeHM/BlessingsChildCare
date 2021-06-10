@@ -1,27 +1,74 @@
-﻿@model IEnumerable<Blessings.ViewModel.PaymentVM>
+﻿
+@model IEnumerable<Blessings.ViewModel.PaymentVM>
+
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "BillingReport";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
+
+
 }
+
+<style type="text/css">
+    .bg_1 {
+        background-color: green;
+    }
+
+    .bg_2 {
+        background-color: gray;
+    }
+
+
+    .error_msg {
+        color: #f00;
+        display: none;
+    }
+
+    .table {
+        /* width: 100%; */
+        /* max-width: 100%; */
+        margin-bottom: 0px;
+    }
+</style>
 
 <div class="page-wrapper">
     <div class="container-fluid">
         <!-- Start Page Content -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                   @* <form asp-controller="EnrollmentViewModels" asp-action="Index" method="get">
-                        <p>
-                            SEARCH: <input type="text" name="SearchString">
-                            <input type="submit" value="Filter" />
-                        </p>
 
-                    </form>*@
+        <div class="card">
+            <div class="card-body">
+                <form asp-controller="PaymentVMs" asp-action="BillingReport" method="get">
+                    <div class="row">
 
-                    <div class="card-body">
-                        <h4 class="card-title">Payment List</h4>
-                        <div  class="table-responsive m-t-40">
+
+                        <div class="col-md-4 col-md-offset-1">
+                            @Html.Label("FROM", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("From", null, new { @class = "form-control", @id = "from", @placeholder = "Select from date" })
+                                <small id="error_FromDate" class="form-text error_msg"> from date is Required</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("TO", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("To", null, new { @class = "form-control", @id = "to", @placeholder = "Select to date" })
+                                <small id="error_ToDate" class="form-text error_msg "> to date is Required</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ">
+                            <br />
+                            <input type="submit" id="getReports" style="margin-top: 10px" id="btnSubmit" value="Get Reports" class="btn btn-success" />
+                        </div>
+
+                    </div>
+
+                </form>
+
+                @if (Model.Any())
+                {
+
+                    <div class="row">
+                        <div class="table-responsive m-t-12">
                             <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
@@ -54,7 +101,7 @@
                                             @Html.DisplayNameFor(model => model.Status)
                                         </th>
 
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,9 +138,6 @@
                                                 @if (item.Status == "Due")
                                                 {
                                                     <label class="label label-warning">@Html.DisplayFor(modelItem => item.Status)</label>
-                                                    <a href="@Url.Action("Create", "Payments", new { ChildId = item.ChildId })" class="btn btn-icon btn-success btn-xs m-b-5">
-                                                        <i class="fa fa-edit"></i>Pay
-                                                    </a>
 
                                                 }
                                                 @if (item.Status == "Paid")
@@ -102,101 +146,43 @@
 
                                                 }
                                             </td>
-@*
-                                            <td>
-                                                <a asp-action="Delete" asp-route-id="@item.PaymentListId" class="btn btn-icon btn-danger btn-xs m-b-5">
-                                                    <i class="fa fa-remove"></i>Delete</a>
-                                            </td>*@
+                                            @*
+                                    <td>
+                                        <a asp-action="Delete" asp-route-id="@item.PaymentListId" class="btn btn-icon btn-danger btn-xs m-b-5">
+                                            <i class="fa fa-remove"></i>Delete</a>
+                                    </td>*@
                                         </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
+
+
+                }
+
+
+
+
+
+                <a asp-action="Index" asp-controller="ReportsLists">Back to List</a>
             </div>
+
         </div>
         @* End PAge Content *@
     </div>
 </div>
 
 
-@*<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-         
-            <th>
-                @Html.DisplayNameFor(model => model.ChildFirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChildBirthdate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Course)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnrollmentDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-         
-        
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-        
-            <td>
-                @Html.DisplayFor(modelItem => item.ChildFirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChildBirthdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Course)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnrollmentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
- 
-            <td>
-              <a asp-action="Delete" asp-route-id="@item.PaymentListId">Delete</a>
-            </td>
-        </tr>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#from").datepicker();
+            $("#to").datepicker();
+        });
+    </script>
 }
-    </tbody>
-</table>*@
+
+
+

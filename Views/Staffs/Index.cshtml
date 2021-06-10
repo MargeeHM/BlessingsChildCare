@@ -14,17 +14,17 @@
                     <div class="form-group">
                         <a value="Create" href="@Url.Action("Create", "Staffs")" class="btn btn-success"> Create Staff </a>
                     </div>
-                    <form asp-controller="Staffs" asp-action="Index" method="get">
+                 @*   <form asp-controller="Staffs" asp-action="Index" method="get">
                         <p>
                             Search:
                             <input type="text" name="SearchString">
 
                         </p>
-                    </form>
+                    </form>*@
                     <div class="card-body">
                         <h4 class="card-title">Staff List</h4>
                         <div class="table-responsive m-t-40">
-                            <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                            <table  id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>

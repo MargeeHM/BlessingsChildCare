@@ -2,54 +2,123 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
 
-<div class="reportHeader">
-    <h3>
-        Create
-    </h3>
-</div>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmergencyContactFirstName" class="control-label"></label>
-                <input asp-for="EmergencyContactFirstName" class="form-control" />
-                <span asp-validation-for="EmergencyContactFirstName" class="text-danger"></span>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.js"></script>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                xdialog.alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+
+                    <div class="card-title">
+                        <h4>Emergencies Contact Info</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-elements">
+                            <form asp-controller="Emergencies" asp-action="Create" method="post">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label asp-for="EmergencyContactFirstName" class="control-label"></label>
+                                            <input asp-for="EmergencyContactFirstName" class="form-control" />
+                                            <span asp-validation-for="EmergencyContactFirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="EmergencyContactLastName" class="control-label"></label>
+                                            <input asp-for="EmergencyContactLastName" class="form-control" />
+                                            <span asp-validation-for="EmergencyContactLastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="EmergencyContactPhone" class="control-label"></label>
+                                            <input asp-for="EmergencyContactPhone" class="form-control" />
+                                            <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Relationship" class="control-label"></label>
+                                            <input asp-for="Relationship" class="form-control" />
+                                            <span asp-validation-for="Relationship" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ChildId" class="control-label"></label>
+                                            <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" value="Create" class="btn btn-success"> Save Changes </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EmergencyContactLastName" class="control-label"></label>
-                <input asp-for="EmergencyContactLastName" class="form-control" />
-                <span asp-validation-for="EmergencyContactLastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmergencyContactPhone" class="control-label"></label>
-                <input asp-for="EmergencyContactPhone" class="form-control" />
-                <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Relationship" class="control-label"></label>
-                <input asp-for="Relationship" class="form-control" />
-                <span asp-validation-for="Relationship" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ChildId" class="control-label"></label>
-                <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        @*    End PAge Content *@
     </div>
 </div>
-<div>
-    <input type="button" class="button" value="Children List"
-           onclick="location.href='@Url.Action("Index", "Children")'" />
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+@*<div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="EmergencyContactFirstName" class="control-label"></label>
+                            <input asp-for="EmergencyContactFirstName" class="form-control" />
+                            <span asp-validation-for="EmergencyContactFirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EmergencyContactLastName" class="control-label"></label>
+                            <input asp-for="EmergencyContactLastName" class="form-control" />
+                            <span asp-validation-for="EmergencyContactLastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EmergencyContactPhone" class="control-label"></label>
+                            <input asp-for="EmergencyContactPhone" class="form-control" />
+                            <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Relationship" class="control-label"></label>
+                            <input asp-for="Relationship" class="form-control" />
+                            <span asp-validation-for="Relationship" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ChildId" class="control-label"></label>
+                            <select asp-for="ChildId" class="form-control" asp-items="ViewBag.ChildId"></select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <input type="button" class="button" value="Children List"
+                       onclick="location.href='@Url.Action("Index", "Children")'" />
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

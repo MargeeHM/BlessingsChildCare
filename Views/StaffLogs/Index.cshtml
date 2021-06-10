@@ -23,10 +23,13 @@
                     </form>*@
                     <div class="card-body">
                         <h4 class="card-title">Staff Log Info</h4>
-                        <div class="table-responsive m-t-40">
-                            <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                        <div  class="table-responsive m-t-40">
+                            <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Staff)
+                                        </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Day)
                                         </th>
@@ -36,55 +39,54 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.StaffCheckOut)
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Staff)
-                                        </th>
+
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Day)
-                                            </td>
-                                            <td>
-                                                @if (item.StaffCheckIn != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.StaffCheckIn)
-                                                }
-                                                else
-                                                {
-                                                    <label class="label btn-danger">Absent</label>
-                                                }
-                                            </td>
-                                            <td>
-                                                @if (item.StaffCheckOut != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.StaffCheckOut)
-                                                }
-                                                else
-                                                {
-                                                    <label class="label btn-danger">Absent</label>
-                                                }
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Staff.StaffFirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Day)
+                                        </td>
+                                        <td>
+                                            @if (item.StaffCheckIn != null)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.StaffCheckIn)
+                                            }
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.StaffCheckOut != null)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.StaffCheckOut)
+                                            }
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
+                                            }
 
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Staff.StaffFirstName)
-                                            </td>
-                                            <td>
-                                                <a asp-action="Edit" asp-route-id="@item.StafflogId" class="btn btn-icon btn-warning btn-xs m-b-5">
-                                                    <i class="fa fa-edit"></i>Edit
-                                                </a>
-                                                <a asp-action="Details" asp-route-id="@item.StafflogId" class="btn btn-icon btn-success btn-xs m-b-5">
-                                                    <i class="fa fa-edit"></i>Details
-                                                </a>
-                                                <a asp-action="Delete" asp-route-id="@item.StafflogId" class="btn btn-icon btn-danger btn-xs m-b-5">
-                                                    <i class="fa fa-remove"></i>Delete
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        </td>
+
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.StafflogId" class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                <i class="fa fa-edit"></i>Edit
+                                            </a>
+                                            <a asp-action="Details" asp-route-id="@item.StafflogId" class="btn btn-icon btn-success btn-xs m-b-5">
+                                                <i class="fa fa-edit"></i>Details
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@item.StafflogId" class="btn btn-icon btn-danger btn-xs m-b-5">
+                                                <i class="fa fa-remove"></i>Delete
+                                            </a>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

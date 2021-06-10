@@ -118,7 +118,7 @@
                                         <div class="card-body">
                                             <h4 class="card-title">Enrollment Info</h4>
                                             <div class="table-responsive m-t-40">
-                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>
@@ -180,8 +180,8 @@
 
                                         <div class="card-body">
                                             <h4 class="card-title">Authorized Pickup Info</h4>
-                                            <div class="table-responsive m-t-40">
-                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                            <div  class="table-responsive m-t-40">
+                                                <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>
@@ -245,10 +245,13 @@
 
                                         <div class="card-body">
                                             <h4 class="card-title">Emergency Contact Info</h4>
-                                            <div class="table-responsive m-t-40">
-                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                            <div  class="table-responsive m-t-40">
+                                                <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => emergencyModel.Child)
+                                                            </th>
                                                             <th>
                                                                 @Html.DisplayNameFor(model => emergencyModel.EmergencyContactFirstName)
                                                             </th>
@@ -261,36 +264,35 @@
                                                             <th>
                                                                 @Html.DisplayNameFor(model => emergencyModel.Relationship)
                                                             </th>
-                                                            <th>
-                                                                @Html.DisplayNameFor(model => emergencyModel.Child)
-                                                            </th>
+
                                                             <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @foreach (var item in Model.Emergency)
                                                         {
-                                                            <tr>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.EmergencyContactFirstName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.EmergencyContactLastName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.EmergencyContactPhone)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.Relationship)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
-                                                                </td>
-                                                                <td>
-                                                                    <a asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
-                                                                    <a asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
-                                                                </td>
-                                                            </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.EmergencyContactFirstName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.EmergencyContactLastName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.EmergencyContactPhone)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Relationship)
+                                                            </td>
+
+                                                            <td>
+                                                                <a asp-action="Edit" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
+                                                                <a asp-action="Delete" asp-route-id="@item.EmergencyId" asp-controller="Emergencies" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                            </td>
+                                                        </tr>
                                                         }
                                                     </tbody>
                                                 </table>
@@ -314,9 +316,12 @@
                                         <div class="card-body">
                                             <h4 class="card-title">Medical Info</h4>
                                             <div class="table-responsive m-t-40">
-                                                <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                                <table  id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => medicalModel.Child)
+                                                            </th>
                                                             <th>
                                                                 @Html.DisplayNameFor(model => medicalModel.PersonToContactFirstName)
                                                             </th>
@@ -344,51 +349,50 @@
                                                             <th>
                                                                 @Html.DisplayNameFor(model => medicalModel.MedicalIssue)
                                                             </th>
-                                                            <th>
-                                                                @Html.DisplayNameFor(model => medicalModel.Child)
-                                                            </th>
+
                                                             <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @foreach (var item in Model.Medical)
                                                         {
-                                                            <tr>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.PersonToContactFirstName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.PersonToContactLastName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.PersonToContactPhone)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.ChildsDoctorFirstName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.ChildsDoctorLastName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.ChildsDoctorPhone)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.RegularlyUsedHospitalName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.DiaetryRestriction)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.MedicalIssue)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
-                                                                </td>
-                                                                <td>
-                                                                    <a asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
-                                                                    <a asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
-                                                                </td>
-                                                            </tr>
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.PersonToContactFirstName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.PersonToContactLastName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.PersonToContactPhone)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.ChildsDoctorFirstName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.ChildsDoctorLastName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.ChildsDoctorPhone)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.RegularlyUsedHospitalName)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.DiaetryRestriction)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.MedicalIssue)
+                                                            </td>
+
+                                                            <td>
+                                                                <a asp-action="Edit" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-warning btn-xs m-b-5"><i class="fa fa-edit"></i>Edit</a>
+                                                                <a asp-action="Delete" asp-route-id="@item.MedicalId" asp-controller="Medicals" class="btn btn-icon btn-danger btn-xs m-b-5"><i class="fa fa-remove"></i>Delete</a>
+                                                            </td>
+                                                        </tr>
                                                         }
                                                     </tbody>
                                                 </table>

@@ -24,9 +24,12 @@
                     <div class="card-body">
                         <h4 class="card-title">Child Log List</h4>
                         <div class="table-responsive m-t-40">
-                            <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                            <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Child)
+                                        </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Day)
                                         </th>
@@ -36,9 +39,7 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.CheckOut)
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Child)
-                                        </th>
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -47,17 +48,20 @@
                                     {
                                     <tr>
                                         <td>
+                                            @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
+                                        </td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.Day)
                                         </td>
-                                   
+
                                         <td>
                                             @if (item.CheckIn != null)
                                             {
-                                                 @Html.DisplayFor(modelItem => item.CheckIn)
+                                                @Html.DisplayFor(modelItem => item.CheckIn)
                                             }
-                                            else 
-                                            { 
-                                                <label class="label btn-danger">Absent</label>                                             
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
                                             }
                                         </td>
                                         <td>
@@ -71,9 +75,7 @@
                                                 <label class="label btn-danger">Absent</label>
                                             }
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Child.ChildFirstName)
-                                        </td>
+
                                         <td>
                                             <a asp-action="Edit" asp-route-id="@item.ChildlogId" class="btn btn-icon btn-warning btn-xs m-b-5">
                                                 <i class="fa fa-edit"></i>Edit
