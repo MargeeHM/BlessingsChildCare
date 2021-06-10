@@ -101,7 +101,7 @@
                             </li>
 
                             <li>
-                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">Student Sign-In </span></a>
+                                <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-user-plus"></i><span class="hide-menu">Children Sign-In </span></a>
                                 <ul aria-expanded="false" class="collapse">
                                     <li><a href="@Url.Action("Index","ChildLogs")">Attendance</a></li>
                                 </ul>
@@ -129,7 +129,7 @@
 
                             </li>
 
-                            <li><a class="  " asp-area="Indentity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" aria-expanded="false"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
+                            @*<li><a class=" " asp-area="Indentity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" aria-expanded="false"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>*@
 
                         </ul>
 
@@ -141,7 +141,7 @@
                 </div>
                 <!-- End Sidebar scroll-->
             </div>
-
+            
             <section class="content">
                 @RenderBody()
 

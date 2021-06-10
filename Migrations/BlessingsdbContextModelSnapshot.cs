@@ -19,6 +19,36 @@ namespace Blessings.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Blessings.Models.AuthorizedPickup", b =>
+                {
+                    b.Property<int>("AuthorizedPickupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ChildId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PersonName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Relation")
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
+
+                    b.Property<string>("phone")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.HasKey("AuthorizedPickupId");
+
+                    b.HasIndex("ChildId");
+
+                    b.ToTable("AuthorizedPickup");
+                });
+
             modelBuilder.Entity("Blessings.Models.Child", b =>
                 {
                     b.Property<int>("ChildId")
@@ -155,11 +185,11 @@ namespace Blessings.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<TimeSpan>("CheckIn")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("CheckIn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("CheckOut")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("CheckOut")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("ChildId")
                         .HasColumnType("int");
@@ -553,11 +583,11 @@ namespace Blessings.Migrations
                     b.Property<DateTime>("Day")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("StaffCheckIn")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("StaffCheckIn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("StaffCheckOut")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("StaffCheckOut")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("StaffId")
                         .HasColumnType("int");
@@ -700,11 +730,11 @@ namespace Blessings.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<TimeSpan>("CheckIn")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("CheckIn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("CheckOut")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("CheckOut")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ChildFirstName")
                         .HasColumnType("nvarchar(max)");
@@ -918,6 +948,15 @@ namespace Blessings.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Blessings.Models.AuthorizedPickup", b =>
+                {
+                    b.HasOne("Blessings.Models.Child", "Child")
+                        .WithMany("AuthorizedPickup")
+                        .HasForeignKey("ChildId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Blessings.Models.Child", b =>

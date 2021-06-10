@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Blessings.ViewModel.StaffInOutVM>
+
+
+@{
+    ViewData["Title"] = "StaffAbsentlist";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+
+
+}
+
+<style type="text/css">
+    .bg_1 {
+        background-color: green;
+    }
+
+    .bg_2 {
+        background-color: gray;
+    }
+
+
+    .error_msg {
+        color: #f00;
+        display: none;
+    }
+
+    .table {
+        /* width: 100%; */
+        /* max-width: 100%; */
+        margin-bottom: 0px;
+    }
+</style>
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+
+        <div class="card">
+            <div class="card-body">
+                <form asp-controller="StaffIn_OutVM" asp-action="StaffAbsentlist" method="get">
+                    <div class="row">
+
+
+                        <div class="col-md-4 col-md-offset-1">
+                            @Html.Label("FROM", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("From", null, new { @class = "form-control", @id = "from", @placeholder = "Select from date" })
+                                <small id="error_FromDate" class="form-text error_msg"> from date is Required</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("TO", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("To", null, new { @class = "form-control", @id = "to", @placeholder = "Select to date" })
+                                <small id="error_ToDate" class="form-text error_msg "> to date is Required</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ">
+                            <br />
+                            <input type="submit" id="getReports" style="margin-top: 10px" id="btnSubmit" value="Get Reports" class="btn btn-success" />
+                        </div>
+
+                    </div>
+
+                </form>
+
+                @if (Model.Any())
+                {
+
+                    <div class="row">
+                        <div class="table-responsive m-t-12">
+                            <table id="example23"  class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.StaffFirstName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Day)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.StaffCheckIn)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.StaffCheckOut)
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StaffFirstName)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Day)
+                                        </td>
+                                        <td>
+                                            @if (item.StaffCheckIn != null)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.StaffCheckIn)
+                                            }
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
+                                            }
+
+                                        </td>
+                                        <td>
+                                            @if (item.StaffCheckOut != null)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.StaffCheckOut)
+                                            }
+                                            else
+                                            {
+                                                <label class="label btn-danger">Absent</label>
+                                            }
+
+                                        </td>
+
+
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                }
+
+
+
+
+
+                <a asp-action="Index" asp-controller="ReportsLists">Back to List</a>
+            </div>
+
+        </div>
+        @* End PAge Content *@
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#from").datepicker();
+            $("#to").datepicker();
+        });
+    </script>
+}
+
+

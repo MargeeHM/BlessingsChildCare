@@ -11,18 +11,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form asp-controller="EnrollmentViewModels" asp-action="Index" method="get">
+                   @* <form asp-controller="EnrollmentViewModels" asp-action="Index" method="get">
                         <p>
                             SEARCH: <input type="text" name="SearchString">
                             <input type="submit" value="Filter" />
                         </p>
 
-                    </form>
+                    </form>*@
 
                     <div class="card-body">
                         <h4 class="card-title">Payment List</h4>
-                        <div class="table-responsive m-t-40">
-                            <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                        <div  class="table-responsive m-t-40">
+                            <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
 
@@ -87,15 +87,18 @@
                                                 @Html.DisplayFor(modelItem => item.PaymentDate)
                                             </td>
                                             <td>
-                                               
+
                                                 @if (item.Status == "Due")
                                                 {
-                                                <label class="label label-warning">@Html.DisplayFor(modelItem => item.Status)</label>
+                                                    <label class="label label-warning">@Html.DisplayFor(modelItem => item.Status)</label>
+                                                    <a href="@Url.Action("Create", "Payments", new { ChildId = item.ChildId })" class="btn btn-icon btn-success btn-xs m-b-5">
+                                                        <i class="fa fa-edit"></i>Pay
+                                                    </a>
 
                                                 }
                                                 @if (item.Status == "Paid")
                                                 {
-                                                     <label class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</label>
+                                                    <label class="label label-success"> @Html.DisplayFor(modelItem => item.Status)</label>
 
                                                 }
                                             </td>

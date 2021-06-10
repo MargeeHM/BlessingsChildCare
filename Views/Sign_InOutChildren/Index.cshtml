@@ -68,9 +68,12 @@
 
                     <div class="row">
                         <div class="table-responsive m-t-12">
-                            <table class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                            <table  id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ChildFirstName)
+                                        </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Day)
                                         </th>
@@ -80,30 +83,30 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.CheckOut)
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.ChildFirstName)
-                                        </th>
+
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Day)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CheckIn)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CheckOut)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ChildFirstName)
-                                            </td>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ChildFirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Day)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CheckIn)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CheckOut)
+                                        </td>
 
-                                        </tr>
+
+
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -117,7 +120,7 @@
 
 
 
-                <a asp-action="Index">Back to List</a>
+                <a asp-action="Index" asp-controller="ReportsLists">Back to List</a>
             </div>
 
         </div>

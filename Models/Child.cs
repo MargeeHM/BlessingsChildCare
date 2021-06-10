@@ -84,5 +84,8 @@ namespace Blessings.Models
 
         [InverseProperty("Child")]
         public virtual ICollection<ChildActivity> ChildActivity { get; set; }
+
+        [InverseProperty("Child")]
+        public virtual ICollection<AuthorizedPickup> AuthorizedPickup  { get; set; }
     }
 }

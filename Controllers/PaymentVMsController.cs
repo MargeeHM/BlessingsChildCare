@@ -61,6 +61,34 @@ namespace Blessings.Controllers
           /*  return View(await _context.PaymentVM.ToListAsync());*/
         }
 
+        public async Task<IActionResult> BillingReport(DateTime from, DateTime to)
+        {
+            var result = from c in _context.Child
+                         join e in _context.Enrollment on c.ChildId equals e.ChildId
+                         join p in _context.Payment on e.ChildId equals p.ChildId
+                         select new PaymentVM
+                         {
+                             PaymentId = p.PaymentId,
+                             ChildFirstName = c.ChildFirstName,
+                             ChildBirthdate = c.ChildBirthdate,
+                             Course = e.Course,
+                             RoomNo = e.RoomNo,
+                             EnrollmentDate = e.EnrollmentDate,
+                             PaymentType = p.PaymentType,
+                             Amount = p.Amount,
+                             PaymentDate = p.PaymentDate,
+                             Status = p.Status,
+                             EnrollmentId = e.EnrollmentId,
+                             ChildId = c.ChildId
+                         };
+            if (from != null && to != null)
+            {
+                result = result.Where(p => p.PaymentDate >= from && p.PaymentDate <= to);
+            }
+
+            return View(await result.ToListAsync());
+            /*  return View(await _context.PaymentVM.ToListAsync());*/
+        }
         // GET: PaymentVMs/Details/5
         public async Task<IActionResult> Details(int? id)
         {

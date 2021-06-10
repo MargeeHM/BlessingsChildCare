@@ -15,10 +15,11 @@ namespace Blessings.Models
         [DataType(DataType.Date)]
         public DateTime Day { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan StaffCheckIn { get; set; }
+        public DateTime? StaffCheckIn { get; set; }
         [DataType(DataType.Time)]
-        public TimeSpan StaffCheckOut { get; set; }
+        public DateTime? StaffCheckOut { get; set; }
        
+      
         public int StaffId { get; set; }
         [ForeignKey(nameof(StaffId))]
         [InverseProperty("StaffLog")]

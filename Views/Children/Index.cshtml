@@ -15,13 +15,13 @@
                     <div class="form-group">
                         <a value="Create" href="@Url.Action("Create", "Children")" class="btn btn-success"> Create Child </a>
                     </div>
-                    <form asp-controller="Children" asp-action="Index" method="get">
+                 @*   <form asp-controller="Children" asp-action="Index" method="get">
                         <p>
                             Search:
                             <input type="text" name="SearchString">
 
                         </p>
-                    </form>
+                    </form>*@
 
                     <div class="card-body">
                         <h4 class="card-title">Children List</h4>
@@ -52,6 +52,9 @@
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.MotherLastName)
+                                        </th>
+                                        <th>
+                                            Actions
                                         </th>
                                     </tr>
                                 </thead>

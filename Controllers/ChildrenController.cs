@@ -76,6 +76,7 @@ namespace Blessings.Controllers
             child.Emergency = _context.Emergency.Where(m => m.ChildId == child.ChildId).ToList();
             child.Medical = _context.Medical.Where(m => m.ChildId == child.ChildId).ToList();
             child.Payment = _context.Payment.Where(m => m.ChildId == child.ChildId).ToList();
+            child.AuthorizedPickup = _context.AuthorizedPickup.Where(m => m.ChildId == child.ChildId).ToList();
 
             return View(child);
         }

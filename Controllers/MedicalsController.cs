@@ -51,7 +51,7 @@ namespace Blessings.Controllers
         public IActionResult Create(int ChildId)
         {
             var children = from c in _context.Child where c.ChildId == ChildId select c;
-            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildLastName");
+            ViewData["ChildId"] = new SelectList(children, "ChildId", "ChildFirstName");
             return View();
         }
 
